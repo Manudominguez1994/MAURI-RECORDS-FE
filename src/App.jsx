@@ -9,6 +9,7 @@ import { Routes, Route } from 'react-router-dom'
 import './App.css'
 
 import IsPrivate from './components/IsPrivate'
+import EditProfile from './pages/EditProfile'
 
 
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/signup" element={<Signup />}/>
 
         <Route path="/my-profile" element={<IsPrivate><UserProfile/></IsPrivate>}/>
+        <Route path="/edit-profile" element={<IsPrivate><EditProfile/></IsPrivate>}/>
 
         <Route path="/error" element={<Error/>}/>
         <Route path="/not-found" element={<NotFound/>}/>

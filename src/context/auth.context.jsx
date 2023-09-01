@@ -21,7 +21,7 @@ function AuthWrapper(props) {
         try {
             
             const response = await service.get("/auth/verify")
-            console.log(response)
+            // console.log(response)
 
             setIsUserActive(true)
             setActiveUserId(response.data._id)
