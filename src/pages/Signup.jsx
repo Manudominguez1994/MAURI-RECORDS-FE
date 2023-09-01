@@ -8,6 +8,7 @@ function Signup() {
 
   const [name, setName] = useState("")
   const [email, setEmail] = useState("");
+  const [city , setCity] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -15,6 +16,7 @@ function Signup() {
 
   const handleNameChange = (e) => setName(e.target.value);
   const handleEmailChange = (e) => setEmail(e.target.value);
+  const handleCityChange = (e) => setCity(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
   const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
 
@@ -68,6 +70,14 @@ function Signup() {
           name="email"
           value={email}
           onChange={handleEmailChange}
+        />
+        <br />
+        <label>Ciudad : </label>
+        <input
+          type="text"
+          name="city"
+          value={city}
+          onChange={handleCityChange}
         />
 
         <br />
