@@ -8,6 +8,8 @@ import NotFound from './pages/NotFound'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 
+import IsPrivate from './components/IsPrivate'
+
 
 
 function App() {
@@ -22,7 +24,8 @@ function App() {
         <Route path="/" element={<Home/>}/> 
         <Route path="/login" element={<Login />}/>
         <Route path="/signup" element={<Signup />}/>
-        <Route path="/my-profile" element={<UserProfile/>}/>
+
+        <Route path="/my-profile" element={<IsPrivate><UserProfile/></IsPrivate>}/>
 
         <Route path="/error" element={<Error/>}/>
         <Route path="/not-found" element={<NotFound/>}/>

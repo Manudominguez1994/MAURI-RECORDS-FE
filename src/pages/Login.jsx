@@ -33,12 +33,12 @@ function Login() {
       //almacenamos el token en LocalStorage
       localStorage.setItem('authToken', response.data.authToken)
 
-      verifyToken()
+      await verifyToken()
 
       navigate('/my-profile')
 
     } catch (error) {
-      if (error.response.status && error.response === 400) {
+      if (error.response && error.response.status === 400) {
         // console.log('Quiero ver el objeto del erro', error.response)
         setErrorMessage(error.response.data.errorMessage)
       } else {
