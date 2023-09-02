@@ -9,15 +9,14 @@ function Navbar() {
   
   const navigate = useNavigate()
 
-  const { isUserActive, verifyToken } = useContext(AuthContext)
+  const { isUserActive, verifyToken, handLogout } = useContext(AuthContext)
 
   
-  const handLogout = () => {
-    localStorage.removeItem('authToken')
-
-    verifyToken()
-    navigate('/login')
+  const ejectHandLogOut = () => {
+    handLogout()
+    navigate('/')
   }
+  
   return (
     <div>
       <Link to='/'>Home</Link>
@@ -26,7 +25,7 @@ function Navbar() {
       ? (
         <>
           <Link to='/my-profile'>My profile</Link>
-          <button onClick={handLogout}>Cerrar Sesión</button>
+          <button onClick={ejectHandLogOut}>Cerrar Sesión</button>
         </>
       ) : (
         <>
