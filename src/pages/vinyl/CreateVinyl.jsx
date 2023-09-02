@@ -1,79 +1,131 @@
-import React from 'react'
-
+import { useState } from "react";
+import service from "../../services/service.config";
+import { useNavigate } from "react-router-dom";
 
 function CreateVinyl() {
+  const navigate = useNavigate();
 
+  const [title, setTitle] = useState("");
+  const [artist, setArtist] = useState("");
+  const [image, setImage] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(0);
+  const [stateConvervation, setStateConservation] = useState("");
+  const [genre, setGenre] = useState("");
+
+  const handleTitle = (event) => {
+    setTitle(event.target.value);
+  };
+  const handleArtist = (event) => {
+    setArtist(event.target.value);
+  };
+  const handleImage = (event) => {
+    setImage(event.target.value);
+  };
+  const handleDescription = (event) => {
+    setDescription(event.target.value);
+  };
+  const handlePrice = (event) => {
+    setPrice(event.target.value);
+  };
+  const handleStateConvservation = (event) => {
+    setStateConservation(event.target.value);
+  };
+  const handleGenre = (event) => {
+    setGenre(event.target.value);
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await service.post("/vinyl/create", {
+        title,
+        artist,
+        image,
+        description,
+        price,
+        stateConvervation,
+        genre,
+      });
+      navigate("/");
+    } catch (error) {
+      navigate("/error");
+    }
+  };
 
   return (
     <>
-        <div>CREAR VINILO</div>
+      <div>CREAR VINILO</div>
 
-        <form >
-            <label htmlFor="title">Título</label>
-            <input type="text" name='title'/>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="title">Título</label>
+        <input type="text" name="title" onChange={handleTitle} value={title} />
 
-            <br />
+        <br />
 
-            <label htmlFor="artist">Banda</label>
-            <input type="text" name='artist'/>
+        <label htmlFor="artist">Banda</label>
+        <input
+          type="text"
+          name="artist"
+          onChange={handleArtist}
+          value={artist}
+        />
 
-            <br />
+        <br />
 
-            <label htmlFor="image">Imagen</label>
-            <input type="text" name='image'/>
+        <label htmlFor="image">Imagen</label>
+        <input type="text" name="image" onChange={handleImage} value={image} />
 
-            <br />
+        <br />
 
-            <label htmlFor="description">Descripción</label>
-            <input type="text" name='description'/>
+        <label htmlFor="description">Descripción</label>
+        <input
+          type="text"
+          name="description"
+          onChange={handleDescription}
+          value={description}
+        />
 
-            <br />
+        <br />
 
-            <label htmlFor="price">Precio</label>
-            <input type="number" name='price'/>
+        <label htmlFor="price">Precio</label>
+        <input
+          type="number"
+          name="price"
+          onChange={handlePrice}
+          value={price}
+        />
 
-            <br />
+        <br />
 
-            <label htmlFor="stateConservation">Estado de conservación</label>
-            <select>
-                <option value="">Seleccionar</option>
-                <option value="Como Nuevo">Como nuevo</option>
-                <option value="Buen estado">Buen estado</option>
-                <option value="Algo desgastado">Algo desgastado</option>
-                <option value="Muy Desgastado">Muy Desgastado</option>
-            </select>
+        <label htmlFor="stateConservation">Estado de conservación</label>
+        <select onChange={handleStateConvservation}>
+          <option value="">Seleccionar</option>
+          <option value="Como Nuevo">Como nuevo</option>
+          <option value="Buen estado">Buen estado</option>
+          <option value="Algo desgastado">Algo desgastado</option>
+          <option value="Muy Desgastado">Muy Desgastado</option>
+        </select>
 
-            <br />
+        <br />
 
-            <label htmlFor="genre">Género</label>
-            <select>
-                <option value="">Seleccionar</option>
-                <option value="Rock">Rock</option>
-                <option value="Pop">Pop</option>
-                <option value="Hip Hop">Hip Hop</option>
-                <option value="Jazz">Jazz</option>
-                <option value="Electronica">Electrónica</option>
-                <option value="Soul">Soul</option>
-                <option value="Reagge">Reagge</option>
-            </select>
-            
+        <label htmlFor="genre">Género</label>
+        <select onChange={handleGenre}>
+          <option value="">Seleccionar</option>
+          <option value="Rock">Rock</option>
+          <option value="Pop">Pop</option>
+          <option value="Hip-Hop">Hip-Hop</option>
+          <option value="Jazz">Jazz</option>
+          <option value="Electronica">Electrónica</option>
+          <option value="Soul">Soul</option>
+          <option value="Reagge">Reagge</option>
+        </select>
 
-            <br />
+        <br />
 
-            <button>Subir vinilo</button>
-
-            
-
-            
-
-
-        </form>
-
-    
-    
+        <button type="submit">Subir vinilo</button>
+      </form>
     </>
-
-  )
+  );
 }
 
-export default CreateVinyl
+export default CreateVinyl;

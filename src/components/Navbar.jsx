@@ -25,7 +25,9 @@ function Navbar() {
       ? (
         <>
           <Link to='/my-profile'>My profile</Link>
+          <Link to='/create-vinyl'><button >Vender Vinilo</button></Link>
           <button onClick={ejectHandLogOut}>Cerrar Sesión</button>
+          
         </>
       ) : (
         <>

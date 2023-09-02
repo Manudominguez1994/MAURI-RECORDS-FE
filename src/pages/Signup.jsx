@@ -22,8 +22,6 @@ function Signup() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    // ... signup logic here
-
     // contactar con BE, pasarle los estados y crear un usuario
 
     try {
