@@ -5,11 +5,11 @@ import service from "../../services/service.config";
 function VinylDetails() {
   const navigate = useNavigate();
   const params = useParams();
-  const [eachVinyl, setEachVinyl] = useState("");
+  const [eachVinyl, setEachVinyl] = useState(null);
     console.log(params,"params vacio WTF");
   useEffect(() => {
     getDetails();
-  }, []);
+  }, [params.vinyl]);
 
   const getDetails = async () => {
     try {
@@ -20,6 +20,10 @@ function VinylDetails() {
       navigate("/error");
     }
   };
+  if(eachVinyl === null){
+    return <h3>...Buscando</h3>
+  }
+  
 
   return (
     <div>
@@ -30,6 +34,13 @@ function VinylDetails() {
       <p>{eachVinyl.price}€</p>
       <p>{eachVinyl.stateConservation}</p>
       <p>{eachVinyl.genre}</p>
+      <h4>Vinilo vendido por : {eachVinyl.sellerUser.name }  </h4>
+      <div>
+        <button>Comprar</button>
+        <button>Favoritos</button>
+        <button>Editar</button>
+        <button>Borrar</button>
+      </div>
     </div>
   );
 }

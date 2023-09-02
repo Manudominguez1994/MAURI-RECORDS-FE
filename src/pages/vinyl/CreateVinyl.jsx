@@ -2,8 +2,10 @@ import { useState } from "react";
 import service from "../../services/service.config";
 import { useNavigate } from "react-router-dom";
 
+
 function CreateVinyl() {
   const navigate = useNavigate();
+  
 
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
@@ -37,7 +39,7 @@ function CreateVinyl() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await service.post("/vinyl/create", {
+    const response= await service.post("/vinyl/create", {
         title,
         artist,
         image,
@@ -46,7 +48,8 @@ function CreateVinyl() {
         stateConvervation,
         genre,
       });
-      navigate("/");
+    //  console.log(response.data);
+      navigate(`/vinylDetails/${response.data._id}`);
     } catch (error) {
       navigate("/error");
     }
