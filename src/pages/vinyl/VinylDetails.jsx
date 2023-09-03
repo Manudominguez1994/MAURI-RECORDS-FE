@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import service from "../../services/service.config";
 
 function VinylDetails() {
@@ -20,10 +20,20 @@ function VinylDetails() {
       navigate("/error");
     }
   };
+
+  const handleDelete = async () => {
+    try {
+      await service.delete(`/vinyl/${params.vinyl}`)
+      navigate('/')
+    } catch (error) {
+      navigate("/error")
+    }
+
+  }
+
   if(eachVinyl === null){
     return <h3>...Buscando</h3>
   }
-  
 
   return (
     <div>
@@ -34,12 +44,12 @@ function VinylDetails() {
       <p>{eachVinyl.price}€</p>
       <p>{eachVinyl.stateConservation}</p>
       <p>{eachVinyl.genre}</p>
-      <h4>Vinilo vendido por : {eachVinyl.sellerUser.name }  </h4>
+      <h4>Vinilo vendido por : { eachVinyl.sellerUser.name }  </h4>
       <div>
         <button>Comprar</button>
         <button>Favoritos</button>
-        <button>Editar</button>
-        <button>Borrar</button>
+        <Link to={`/vinylDetails/${eachVinyl._id}/edit`}><button>Editar</button></Link>
+        <button onClick={handleDelete}>Borrar</button>
       </div>
     </div>
   );

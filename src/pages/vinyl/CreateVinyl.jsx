@@ -6,13 +6,12 @@ import { useNavigate } from "react-router-dom";
 function CreateVinyl() {
   const navigate = useNavigate();
   
-
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
-  const [stateConvervation, setStateConservation] = useState("");
+  const [stateConservation, setStateConservation] = useState("");
   const [genre, setGenre] = useState("");
 
   const handleTitle = (event) => {
@@ -30,7 +29,7 @@ function CreateVinyl() {
   const handlePrice = (event) => {
     setPrice(event.target.value);
   };
-  const handleStateConvservation = (event) => {
+  const handleStateConservation = (event) => {
     setStateConservation(event.target.value);
   };
   const handleGenre = (event) => {
@@ -39,13 +38,13 @@ function CreateVinyl() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-    const response= await service.post("/vinyl/create", {
+    const response = await service.post("/vinyl/create", {
         title,
         artist,
         image,
         description,
         price,
-        stateConvervation,
+        stateConservation,
         genre,
       });
     //  console.log(response.data);
@@ -101,7 +100,7 @@ function CreateVinyl() {
         <br />
 
         <label htmlFor="stateConservation">Estado de conservación</label>
-        <select onChange={handleStateConvservation}>
+        <select onChange={handleStateConservation}>
           <option value="">Seleccionar</option>
           <option value="Como Nuevo">Como nuevo</option>
           <option value="Buen estado">Buen estado</option>

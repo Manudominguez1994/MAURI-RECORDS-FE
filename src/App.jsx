@@ -13,6 +13,7 @@ import EditProfile from './pages/EditProfile'
 import CreateVinyl from './pages/vinyl/CreateVinyl'
 import AllVinyls from './pages/vinyl/AllVinyls'
 import VinylDetails from './pages/vinyl/VinylDetails'
+import EditVinyl from './pages/vinyl/EditVinyl'
 
 
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="/create-vinyl" element={<IsPrivate><CreateVinyl/></IsPrivate>}/>
         <Route path="/allVinyls" element={<IsPrivate><AllVinyls/></IsPrivate>}/>
         <Route path="/vinylDetails/:vinyl" element={<IsPrivate><VinylDetails/></IsPrivate>}/>
+        <Route path="/vinylDetails/:vinyl/edit" element={<IsPrivate><EditVinyl/></IsPrivate>}/>
 
         <Route path="/error" element={<Error/>}/>
         <Route path="/not-found" element={<NotFound/>}/>
