@@ -34,6 +34,7 @@ function UserProfile() {
       </div>
       <div>
         <h3>Favoritos</h3>
+        
       </div>
     </div>
   );

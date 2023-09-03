@@ -2,11 +2,19 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import service from "../../services/service.config";
 
+import { useContext } from "react";
+import { AuthContext } from "../../context/auth.context";
+
 function VinylDetails() {
   const navigate = useNavigate();
   const params = useParams();
+
+  const { activeUserId } = useContext(AuthContext);
+  console.log(activeUserId,"Id usuario activo");
+
   const [eachVinyl, setEachVinyl] = useState(null);
-    console.log(params,"params vacio WTF");
+
+  console.log(params, "params vacio WTF");
   useEffect(() => {
     getDetails();
   }, [params.vinyl]);
@@ -21,18 +29,25 @@ function VinylDetails() {
     }
   };
 
+  const handleAddFavorite = async () => {
+    try {
+      await service.put(`/user/${params.vinyl}/fav`);
+    } catch (error) {
+      navigate("/error");
+    }
+  };
+
   const handleDelete = async () => {
     try {
-      await service.delete(`/vinyl/${params.vinyl}`)
-      navigate('/')
+      await service.delete(`/vinyl/${params.vinyl}`);
+      navigate("/");
     } catch (error) {
-      navigate("/error")
+      navigate("/error");
     }
+  };
 
-  }
-
-  if(eachVinyl === null){
-    return <h3>...Buscando</h3>
+  if (eachVinyl === null) {
+    return <h3>...Buscando</h3>;
   }
 
   return (
@@ -44,12 +59,22 @@ function VinylDetails() {
       <p>{eachVinyl.price}€</p>
       <p>{eachVinyl.stateConservation}</p>
       <p>{eachVinyl.genre}</p>
-      <h4>Vinilo vendido por : { eachVinyl.sellerUser.name }  </h4>
+      <h4>Vinilo vendido por : {eachVinyl.sellerUser.name} </h4>
       <div>
-        <button>Comprar</button>
-        <button>Favoritos</button>
-        <Link to={`/vinylDetails/${eachVinyl._id}/edit`}><button>Editar</button></Link>
-        <button onClick={handleDelete}>Borrar</button>
+        
+        {eachVinyl.sellerUser._id === activeUserId ? (
+          <div>
+            <Link to={`/vinylDetails/${eachVinyl._id}/edit`}>
+              <button>Editar</button>
+            </Link>
+            <button onClick={handleDelete}>Borrar</button>
+          </div>
+        ) : (
+          <div>
+            <button>Comprar</button>
+            <button onClick={handleAddFavorite}>Favoritos</button>
+          </div>
+        )}
       </div>
     </div>
   );
