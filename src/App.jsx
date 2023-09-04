@@ -27,19 +27,22 @@ function App() {
       <Navbar />
 
       <Routes>
-
+        {/* Global routes */}
         <Route path="/" element={<Home/>}/> 
         <Route path="/login" element={<Login />}/>
         <Route path="/signup" element={<Signup />}/>
 
+        {/* User routes */}
         <Route path="/my-profile" element={<IsPrivate><UserProfile/></IsPrivate>}/>
         <Route path="/edit-profile" element={<IsPrivate><EditProfile/></IsPrivate>}/>
 
+        {/* Vinyl routes */}
         <Route path="/create-vinyl" element={<IsPrivate><CreateVinyl/></IsPrivate>}/>
         <Route path="/allVinyls" element={<IsPrivate><AllVinyls/></IsPrivate>}/>
         <Route path="/vinylDetails/:vinyl" element={<IsPrivate><VinylDetails/></IsPrivate>}/>
         <Route path="/vinylDetails/:vinyl/edit" element={<IsPrivate><EditVinyl/></IsPrivate>}/>
 
+        {/* Error routes */}
         <Route path="/error" element={<Error/>}/>
         <Route path="/not-found" element={<NotFound/>}/>
 

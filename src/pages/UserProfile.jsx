@@ -3,7 +3,7 @@ import service from "../services/service.config";
 import { Link, useNavigate } from "react-router-dom";
 function UserProfile() {
   const navigate = useNavigate();
-  const [userObj, setUserObj] = useState("");
+  const [userObj, setUserObj] = useState(null);
 
   useEffect(() => {
     getUserObj();
@@ -18,6 +18,10 @@ function UserProfile() {
       navigate("/error");
     }
   };
+
+  if ( userObj ===  null) {
+    return <h3>Cargando</h3>
+  }
 
   return (
     <div>
@@ -34,6 +38,16 @@ function UserProfile() {
       </div>
       <div>
         <h3>Favoritos</h3>
+        
+        
+        {userObj.favorite.map((eachVinyl) => {
+          console.log('buscando el objeto vinilo', eachVinyl)
+            return(
+              <>
+              <h3>{eachVinyl}</h3>
+              </>
+            )
+        })}
         
       </div>
     </div>

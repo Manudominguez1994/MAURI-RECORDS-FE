@@ -111,16 +111,16 @@ function CreateVinyl() {
         <br />
 
         <label htmlFor="genre">Género</label>
-        <select onChange={handleGenre}>
-          <option value="">Seleccionar</option>
-          <option value="Rock">Rock</option>
-          <option value="Pop">Pop</option>
-          <option value="Hip-Hop">Hip-Hop</option>
-          <option value="Jazz">Jazz</option>
-          <option value="Electronica">Electrónica</option>
-          <option value="Soul">Soul</option>
-          <option value="Reagge">Reagge</option>
-        </select>
+          <select onChange={handleGenre}>
+            <option value="">Seleccionar</option>
+            <option value="Rock">Rock</option>
+            <option value="Pop">Pop</option>
+            <option value="Hip-Hop">Hip-Hop</option>
+            <option value="Jazz">Jazz</option>
+            <option value="Electronica">Electrónica</option>
+            <option value="Soul">Soul</option>
+            <option value="Reagge">Reagge</option>
+          </select>
 
         <br />
 

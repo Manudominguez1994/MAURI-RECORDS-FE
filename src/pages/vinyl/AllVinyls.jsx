@@ -16,7 +16,7 @@ function AllVinyls() {
 
     const getAllVinyls = async () => {
         try {
-        const response =    await service.get("/vinyl/allVinyls")
+        const response = await service.get("/vinyl/allVinyls")
             setAllVinyls(response.data)
             // console.log(response.data);
         } catch (error) {
@@ -36,7 +36,8 @@ function AllVinyls() {
                     <img src={eachVinyl.image} alt="image" />                    
                     <p>{eachVinyl.price}</p>                 
                     <p>{eachVinyl.genre}</p>
-                    <Link to={`/vinylDetails/${eachVinyl._id}`}><button>Destalles</button></Link>                   
+                    <Link to={`/vinylDetails/${eachVinyl._id}`}><button>Destalles</button></Link>
+                    {/* <button onClick={}>Favoritos</button>                    */}
                 </div>
             )
         })}

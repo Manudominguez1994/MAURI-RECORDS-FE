@@ -32,6 +32,7 @@ function VinylDetails() {
   const handleAddFavorite = async () => {
     try {
       await service.put(`/user/${params.vinyl}/fav`);
+      console.log('añadido a fav')
     } catch (error) {
       navigate("/error");
     }
