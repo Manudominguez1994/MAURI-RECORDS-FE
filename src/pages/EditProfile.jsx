@@ -3,25 +3,24 @@ import service from "../services/service.config";
 import { useNavigate } from "react-router-dom";
 import { uploadImageService } from "../services/cloud.services";
 //importar contexto
-import { useContext } from "react"; 
+import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 
 // FUNCIÓN PRINCIPAL
 function EditProfile() {
-
   //declaramos navigate para redireccionar
   const navigate = useNavigate();
 
   //traernos handLogout de contexto y podríamos traer todas las funciones que contiene contexto(passedContext)
-  const { handLogout } = useContext(AuthContext)
- 
-//ESTADOS
+  const { handLogout } = useContext(AuthContext);
+
+  //ESTADOS
   const [name, setNameChange] = useState("");
   const [city, setCityChange] = useState("");
-  const [image, setImage] = useState(null);
+  const [imageUrl, setImage] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
-  
-// cambiamos el campo del nombre del formulario
+
+  // cambiamos el campo del nombre del formulario
   const handleNameChange = (event) => {
     setNameChange(event.target.value);
   };
@@ -39,26 +38,24 @@ function EditProfile() {
     try {
       const response = await uploadImageService(uploadData);
 
-      setImage(response.data.image);
+      setImage(response.data.imageUrl);
       setIsUploading(false);
-
-     
     } catch (error) {
       navigate("/error");
     }
   };
 
-// cambiamos el valor del campo ciudad del form
+  // cambiamos el valor del campo ciudad del form
   const handleCityChange = (event) => {
     setCityChange(event.target.value);
   };
 
-// efectúa la llamada del getUserObj cuando se monta el componente (ciclo de vida inicial)
+  // efectúa la llamada del getUserObj cuando se monta el componente (ciclo de vida inicial)
   useEffect(() => {
     getUserObj();
   }, []);
 
-// llamar a BE y traer los valores predeterminados en el perfil de usuario
+  // llamar a BE y traer los valores predeterminados en el perfil de usuario
   const getUserObj = async () => {
     try {
       const response = await service.get("/user/myprofile");
@@ -71,37 +68,39 @@ function EditProfile() {
     }
   };
 
-// esto elimina perfil de usuario
+  // esto elimina perfil de usuario
   const handleDelete = async () => {
     console.log("función eliminar");
     try {
-      await service.delete('/user/deleteprofile');
-      console.log("qué pasa BE estoy eliminando mi usuario")
-      handLogout()
-      navigate("/")
-
+      await service.delete("/user/deleteprofile");
+      console.log("qué pasa BE estoy eliminando mi usuario");
+      handLogout();
+      navigate("/");
     } catch (error) {
       navigate("/error");
     }
-  }
+  };
 
-// esto lanza el formulario y aplica los cambios en DB
+  // esto lanza el formulario y aplica los cambios en DB
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("función actualizar");
     try {
-      const response = await service.put("/user/editprofile", {
-        name,
-        image,
-        city,
+      await service.put("/user/editprofile", {
+        name: name,
+        image: imageUrl,
+        city: city
       });
-      console.log("perfil actualizado", response);
+      console.log("perfil actualizado");
       navigate("/my-profile");
     } catch (error) {
       navigate("/error");
     }
   };
 
+  if (imageUrl === null || name === "" || city === "") {
+    return <h3>Buscando </h3>;
+  }
   // este es el render
   return (
     <div>
@@ -123,10 +122,10 @@ function EditProfile() {
             disabled={isUploading}
           />
         </div>
-        ;{isUploading ? <h3>... uploading image</h3> : null}
-        {image ? (
+        {isUploading ? <h3>... uploading image</h3> : null}
+        {imageUrl ? (
           <div>
-            <img src={image} alt="img" width={200} />
+            <img src={imageUrl} alt="img" width={200} />
           </div>
         ) : null}
         <br />
@@ -138,7 +137,9 @@ function EditProfile() {
           value={city}
         />
         <br />
-        <button disabled={isUploading}>Guardar cambios</button>
+        <button disabled={isUploading} type="submit">
+          Guardar cambios
+        </button>
       </form>
       <button onClick={handleDelete}>Eliminar usuario</button>
     </div>
