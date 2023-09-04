@@ -1,14 +1,21 @@
 import { useState } from "react";
 import service from "../../services/service.config";
 import { useNavigate } from "react-router-dom";
+import { uploadImageService } from "../../services/cloud.services";
 
 
 function CreateVinyl() {
   const navigate = useNavigate();
-  
+
+  const [imageUrl, setImage] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
+
+  const AllGenre =  ["Rock", "Pop", "Hip-Hop", "Jazz", "Electronica", "Soul", "Reagge","Otros"]
+  const AllState = ["Como Nuevo", "Buen estado", "Algo desgastado", "Muy Desgastado"]
+
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
-  const [image, setImage] = useState("");
+  
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [stateConservation, setStateConservation] = useState("");
@@ -41,7 +48,7 @@ function CreateVinyl() {
     const response = await service.post("/vinyl/create", {
         title,
         artist,
-        image,
+        image:imageUrl,
         description,
         price,
         stateConservation,
@@ -54,11 +61,50 @@ function CreateVinyl() {
     }
   };
 
+   // subimos la imagen del formulario
+   const handleFileUpload = async (event) => {
+    if (!event.target.files[0]) {
+      return;
+    }
+    setIsUploading(true);
+
+    const uploadData = new FormData();
+    uploadData.append("image", event.target.files[0]);
+
+    try {
+      const response = await uploadImageService(uploadData);
+
+      setImage(response.data.imageUrl);
+      setIsUploading(false);
+     
+    } catch (error) {
+      navigate("/error");
+    }
+  };
+
   return (
     <>
       <div>CREAR VINILO</div>
+      
+
 
       <form onSubmit={handleSubmit}>
+      <div>
+          <label>Image: </label>
+          <input
+            type="file"
+            name="image"
+            onChange={handleFileUpload}
+            disabled={isUploading}
+          />
+        </div>
+        {isUploading ? <h3>... uploading image</h3> : null}
+        {imageUrl ? (
+          <div>
+            <img src={imageUrl} alt="img" width={200} />
+          </div>
+        ) : null}
+        <br />
         <label htmlFor="title">Título</label>
         <input type="text" name="title" onChange={handleTitle} value={title} />
 
@@ -74,10 +120,7 @@ function CreateVinyl() {
 
         <br />
 
-        <label htmlFor="image">Imagen</label>
-        <input type="text" name="image" onChange={handleImage} value={image} />
-
-        <br />
+        
 
         <label htmlFor="description">Descripción</label>
         <input
@@ -102,10 +145,14 @@ function CreateVinyl() {
         <label htmlFor="stateConservation">Estado de conservación</label>
         <select onChange={handleStateConservation}>
           <option value="">Seleccionar</option>
-          <option value="Como Nuevo">Como nuevo</option>
-          <option value="Buen estado">Buen estado</option>
-          <option value="Algo desgastado">Algo desgastado</option>
-          <option value="Muy Desgastado">Muy Desgastado</option>
+          {AllState.map((eachState)=>{
+            return(
+              <>
+              <option value={eachState}>{eachState}</option>
+              </>
+            )
+          })}
+        
         </select>
 
         <br />
@@ -113,19 +160,21 @@ function CreateVinyl() {
         <label htmlFor="genre">Género</label>
           <select onChange={handleGenre}>
             <option value="">Seleccionar</option>
-            <option value="Rock">Rock</option>
-            <option value="Pop">Pop</option>
-            <option value="Hip-Hop">Hip-Hop</option>
-            <option value="Jazz">Jazz</option>
-            <option value="Electronica">Electrónica</option>
-            <option value="Soul">Soul</option>
-            <option value="Reagge">Reagge</option>
+            {AllGenre.map((eachGenre)=>{
+            return(
+              <>
+              <option value={eachGenre}>{eachGenre}</option>
+              </>
+            )
+          })}
+
           </select>
 
         <br />
-
+        
         <button type="submit">Subir vinilo</button>
       </form>
+      
     </>
   );
 }

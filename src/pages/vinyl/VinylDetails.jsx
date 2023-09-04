@@ -10,7 +10,7 @@ function VinylDetails() {
   const params = useParams();
 
   const { activeUserId } = useContext(AuthContext);
-  console.log(activeUserId,"Id usuario activo");
+  console.log(activeUserId, "Id usuario activo");
 
   const [eachVinyl, setEachVinyl] = useState(null);
 
@@ -29,15 +29,7 @@ function VinylDetails() {
     }
   };
 
-  const handleAddFavorite = async () => {
-    try {
-      await service.put(`/user/${params.vinyl}/fav`);
-      console.log('añadido a fav')
-    } catch (error) {
-      navigate("/error");
-    }
-  };
-
+ 
   const handleDelete = async () => {
     try {
       await service.delete(`/vinyl/${params.vinyl}`);
@@ -62,18 +54,17 @@ function VinylDetails() {
       <p>{eachVinyl.genre}</p>
       <h4>Vinilo vendido por : {eachVinyl.sellerUser.name} </h4>
       <div>
-        
         {eachVinyl.sellerUser._id === activeUserId ? (
           <div>
+             <Link to={`/vinylDetails/${eachVinyl._id}/editImage`}><button>Cambiar Imagen</button></Link>
             <Link to={`/vinylDetails/${eachVinyl._id}/edit`}>
-              <button>Editar</button>
+              <button>Editar Vinilo</button>
             </Link>
             <button onClick={handleDelete}>Borrar</button>
           </div>
         ) : (
           <div>
             <button>Comprar</button>
-            <button onClick={handleAddFavorite}>Favoritos</button>
           </div>
         )}
       </div>

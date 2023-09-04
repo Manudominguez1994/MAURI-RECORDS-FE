@@ -1,8 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import service from '../../services/service.config'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 function EditVinyl() {
+
+  const AllGenre = [
+    "Rock",
+    "Pop",
+    "Hip-Hop",
+    "Jazz",
+    "Electronica",
+    "Soul",
+    "Reagge",
+    "Otros",
+  ];
+  const AllState = [
+    "Como Nuevo",
+    "Buen estado",
+    "Algo desgastado",
+    "Muy Desgastado",
+  ];
 
 // el params lo hemos usado para traernos la id dinámica del album
 const params = useParams()
@@ -11,7 +28,7 @@ const params = useParams()
 const navigate = useNavigate()
 
 //ESTADOS que guardan un valor inicial y un set para modificarlos
-
+const [vinylId , setVinylId] = useState("")
 const [ titleInput, setTitleInput ] = useState(null)
 const [ artistInput, setArtistInput ] = useState(null)
 const [ imageInput, setImageInput ] = useState(null)
@@ -60,7 +77,7 @@ const getVinylDetails = async () => {
 
     try {
         const response = await service.get(`/vinyl/${params.vinyl}`)
-        
+        setVinylId(response.data._id)
         setTitleInput(response.data.title)
         setArtistInput(response.data.artist)
         setImageInput(response.data.image)
@@ -97,6 +114,7 @@ const handleSubmit = async (event) => {
     }
 }
 
+
 if (titleInput === null && artistInput  === null && imageInput  === null && descriptionInput  === null && priceInput  === null && stateConservationInput  === null && genreInput === null) {
     return <h3>...cargando cambios</h3>
 }
@@ -122,10 +140,6 @@ if (titleInput === null && artistInput  === null && imageInput  === null && desc
 
         <br />
 
-        <label htmlFor="image">Imagen</label>
-        <input type="text" name="image" value={imageInput} onChange={handleImageChange}/>
-
-        <br />
 
         <label htmlFor="description">Descripción</label>
         <input
@@ -151,31 +165,34 @@ if (titleInput === null && artistInput  === null && imageInput  === null && desc
 
         <label htmlFor="stateConservation">Estado de conservación</label>
         <select value={stateConservationInput} onChange={handleStateConservationChange}>
-          <option value="">Seleccionar</option>
-          <option value="Como Nuevo">Como nuevo</option>
-          <option value="Buen estado">Buen estado</option>
-          <option value="Algo desgastado">Algo desgastado</option>
-          <option value="Muy Desgastado">Muy Desgastado</option>
+        {AllState.map((eachState) => {
+            return (
+              <>
+                <option value={eachState}>{eachState}</option>
+              </>
+            );
+          })}
         </select>
 
         <br />
 
         <label htmlFor="genre">Género</label>
         <select value={genreInput} onChange={handleGenreChange}>
-          <option value="">Seleccionar</option>
-          <option value="Rock">Rock</option>
-          <option value="Pop">Pop</option>
-          <option value="Hip-Hop">Hip-Hop</option>
-          <option value="Jazz">Jazz</option>
-          <option value="Electronica">Electrónica</option>
-          <option value="Soul">Soul</option>
-          <option value="Reagge">Reagge</option>
+        {AllGenre.map((eachGenre) => {
+            return (
+              <>
+                <option value={eachGenre}>{eachGenre}</option>
+              </>
+            );
+          })}
         </select>
 
         <br />
 
         <button type="submit">Guardar cambios</button>
       </form>
+
+     {/* <Link to={`/vinylDetails/${vinylId}/editImage`}><button>Cambiar Imagen</button></Link>  */}
     </>
   );
 }
