@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import service from "../services/service.config";
 import { useNavigate } from "react-router-dom";
-import { uploadImageService } from "../services/cloud.services";
+// import { uploadImageService } from "../services/cloud.services";
 //importar contexto
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+
 
 // FUNCIÓN PRINCIPAL
 function EditProfile() {
@@ -25,25 +26,25 @@ function EditProfile() {
     setNameChange(event.target.value);
   };
 
-  // subimos la imagen del formulario
-  const handleFileUpload = async (event) => {
-    if (!event.target.files[0]) {
-      return;
-    }
-    setIsUploading(true);
+  // // subimos la imagen del formulario
+  // const handleFileUpload = async (event) => {
+  //   if (!event.target.files[0]) {
+  //     return;
+  //   }
+  //   setIsUploading(true);
 
-    const uploadData = new FormData();
-    uploadData.append("image", event.target.files[0]);
+  //   const uploadData = new FormData();
+  //   uploadData.append("image", event.target.files[0]);
 
-    try {
-      const response = await uploadImageService(uploadData);
+  //   try {
+  //     const response = await uploadImageService(uploadData);
 
-      setImage(response.data.imageUrl);
-      setIsUploading(false);
-    } catch (error) {
-      navigate("/error");
-    }
-  };
+  //     setImage(response.data.imageUrl);
+  //     setIsUploading(false);
+  //   } catch (error) {
+  //     navigate("/error");
+  //   }
+  // };
 
   // cambiamos el valor del campo ciudad del form
   const handleCityChange = (event) => {
@@ -89,7 +90,7 @@ function EditProfile() {
       await service.put("/user/editprofile", {
         name: name,
         image: imageUrl,
-        city: city
+        city: city,
       });
       console.log("perfil actualizado");
       navigate("/my-profile");
@@ -104,6 +105,7 @@ function EditProfile() {
   // este es el render
   return (
     <div>
+     
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Nombre completo: </label>
         <input
@@ -113,22 +115,6 @@ function EditProfile() {
           value={name}
         />
         <br />
-        <div>
-          <label>Image: </label>
-          <input
-            type="file"
-            name="image"
-            onChange={handleFileUpload}
-            disabled={isUploading}
-          />
-        </div>
-        {isUploading ? <h3>... uploading image</h3> : null}
-        {imageUrl ? (
-          <div>
-            <img src={imageUrl} alt="img" width={200} />
-          </div>
-        ) : null}
-        <br />
         <label htmlFor="city">Ciudad : </label>
         <input
           type="text"
@@ -137,9 +123,7 @@ function EditProfile() {
           value={city}
         />
         <br />
-        <button disabled={isUploading} type="submit">
-          Guardar cambios
-        </button>
+        <button type="submit">Guardar cambios</button>
       </form>
       <button onClick={handleDelete}>Eliminar usuario</button>
     </div>

@@ -14,6 +14,7 @@ import CreateVinyl from './pages/vinyl/CreateVinyl'
 import AllVinyls from './pages/vinyl/AllVinyls'
 import VinylDetails from './pages/vinyl/VinylDetails'
 import EditVinyl from './pages/vinyl/EditVinyl'
+import EditImage from './components/EditImage'
 
 
 
@@ -35,6 +36,7 @@ function App() {
         {/* User routes */}
         <Route path="/my-profile" element={<IsPrivate><UserProfile/></IsPrivate>}/>
         <Route path="/edit-profile" element={<IsPrivate><EditProfile/></IsPrivate>}/>
+        <Route path="/edit-image" element={<IsPrivate><EditImage/></IsPrivate>}/>
 
         {/* Vinyl routes */}
         <Route path="/create-vinyl" element={<IsPrivate><CreateVinyl/></IsPrivate>}/>
