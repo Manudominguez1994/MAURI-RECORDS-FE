@@ -13,6 +13,7 @@ function VinylDetails() {
   console.log(activeUserId, "Id usuario activo");
 
   const [eachVinyl, setEachVinyl] = useState(null);
+  // const [ errorMessage, setErrorMessage ] = useState('');
 
   console.log(params, "params vacio WTF");
   useEffect(() => {
@@ -29,7 +30,26 @@ function VinylDetails() {
     }
   };
 
- 
+  const handleOperationCreate = async (event) => {
+    event.preventDefault()
+    try {
+      const operationObj = await service.post(`/operation/create/${params.vinyl}`)
+      console.log('este es el vinilo que quiero comprar', operationObj.data._id)
+      // const response = await service.get(`/operation/${params.vinyl}`)
+      
+      navigate(`/operationConfirm/${operationObj.data._id}`)
+    } catch (error) {
+      // if (error.response && error.response.status === 400) {
+      //   setErrorMessage(error.response.data.errorMessage)
+      // } else {
+      // navigate('/error')
+      // }
+      navigate('/error')
+     
+      
+    }
+  }
+
   const handleDelete = async () => {
     try {
       await service.delete(`/vinyl/${params.vinyl}`);
@@ -56,7 +76,7 @@ function VinylDetails() {
       <div>
         {eachVinyl.sellerUser._id === activeUserId ? (
           <div>
-             <Link to={`/vinylDetails/${eachVinyl._id}/editImage`}><button>Cambiar Imagen</button></Link>
+            <Link to={`/vinylDetails/${eachVinyl._id}/editImage`}><button>Cambiar Imagen</button></Link>
             <Link to={`/vinylDetails/${eachVinyl._id}/edit`}>
               <button>Editar Vinilo</button>
             </Link>
@@ -64,7 +84,7 @@ function VinylDetails() {
           </div>
         ) : (
           <div>
-            <button>Comprar</button>
+            <button onClick={handleOperationCreate}>Comprar</button>
           </div>
         )}
       </div>
