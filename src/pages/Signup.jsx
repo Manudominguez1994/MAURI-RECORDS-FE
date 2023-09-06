@@ -49,7 +49,7 @@ function Signup() {
     <div>
 
       <h1>Sign Up</h1>
-    
+      { errorMessage ? <p>{errorMessage}</p> : null }  
       <form onSubmit={handleSignup}>
         
         <label>Nombre completo: </label>
@@ -64,7 +64,7 @@ function Signup() {
 
         <label>Email: </label>
         <input
-          type="email"
+          type="text"
           name="email"
           value={email}
           onChange={handleEmailChange}
@@ -102,7 +102,7 @@ function Signup() {
 
         <button type="submit">Signup</button>
 
-        { errorMessage ? <p>{errorMessage}</p> : null }    
+         
       </form>
       
     </div>

@@ -17,7 +17,7 @@ import EditVinyl from './pages/vinyl/EditVinyl'
 import EditImage from './components/EditImage'
 import EditImageVinyl from './components/EditImageVinyl'
 import OperationConfirm from './pages/operation/OperationConfirm'
-import FilteredVinyls from './components/FilteredVinyls'
+
 
 
 
@@ -47,7 +47,7 @@ function App() {
         <Route path="/vinylDetails/:vinyl" element={<IsPrivate><VinylDetails/></IsPrivate>}/>
         <Route path="/vinylDetails/:vinyl/edit" element={<IsPrivate><EditVinyl/></IsPrivate>}/>
         <Route path="/vinylDetails/:vinyl/editImage" element={<IsPrivate><EditImageVinyl/></IsPrivate>}/>
-        <Route path="/filteredVinyl" element={<IsPrivate><FilteredVinyls/></IsPrivate>}/>
+       
 
          {/* Vinyl routes */}
         <Route path="/operationConfirm/:operationId" element={<IsPrivate><OperationConfirm/></IsPrivate>}/>

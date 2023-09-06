@@ -10,6 +10,7 @@ function UserProfile() {
   const navigate = useNavigate();
   const [userObj, setUserObj] = useState(null);
   const [numValue , setNumValue] = useState(0)
+  
 
   useEffect(() => {
     getUserObj();
@@ -41,6 +42,7 @@ function UserProfile() {
 
   return (
     <div>
+      
       <h2>{userObj.name}</h2>
       <img src={userObj.image} alt="imageprofile" style={{ width: 250 }} />
       <br />

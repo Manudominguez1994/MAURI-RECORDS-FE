@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import { useContext } from 'react'
 import { AuthContext } from '../context/auth.context'
-import Search from './Search'
+
 
 
 function Navbar() {
@@ -21,7 +21,7 @@ function Navbar() {
   return (
     <div>
       <Link to='/'>Home</Link>
-      <Search />
+     
       {isUserActive === true
       ? (
         <>

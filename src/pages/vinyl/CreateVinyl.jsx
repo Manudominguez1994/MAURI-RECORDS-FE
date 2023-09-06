@@ -7,6 +7,8 @@ import { uploadImageService } from "../../services/cloud.services";
 function CreateVinyl() {
   const navigate = useNavigate();
 
+  const [ errorMessage, setErrorMessage ] = useState('')
+
   const [imageUrl, setImage] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
 
@@ -57,7 +59,11 @@ function CreateVinyl() {
     //  console.log(response.data);
       navigate(`/vinylDetails/${response.data._id}`);
     } catch (error) {
-      navigate("/error");
+      if (error.response && error.response.status === 400) {
+        setErrorMessage(error.response.data.errorMessage)
+      } else {
+      navigate('/error')
+      }
     }
   };
 
@@ -87,7 +93,7 @@ function CreateVinyl() {
       <div>CREAR VINILO</div>
       
 
-
+      { errorMessage ? <p>{errorMessage}</p> : null }  
       <form onSubmit={handleSubmit}>
       <div>
           <label>Image: </label>
