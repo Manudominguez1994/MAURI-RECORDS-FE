@@ -49,7 +49,7 @@ function App() {
         <Route path="/vinylDetails/:vinyl/editImage" element={<IsPrivate><EditImageVinyl/></IsPrivate>}/>
        
 
-         {/* Vinyl routes */}
+         {/* Operation routes */}
         <Route path="/operationConfirm/:operationId" element={<IsPrivate><OperationConfirm/></IsPrivate>}/>
 
         {/* Error routes */}

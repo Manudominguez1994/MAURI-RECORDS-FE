@@ -29,7 +29,8 @@ function Signup() {
       name,
       email,
       password,
-      confirmPassword
+      confirmPassword,
+      city
       })
 
       navigate('/login')
