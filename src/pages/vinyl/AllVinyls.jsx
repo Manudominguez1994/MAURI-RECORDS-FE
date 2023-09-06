@@ -83,13 +83,10 @@ function AllVinyls() {
 
       navigate(`/operationConfirm/${operationObj.data._id}`);
     } catch (error) {
-      if (error.response && error.response.status === 400) {
-        setErrorMessage(error.response.data.errorMessage);
-      } else {
         navigate("/error");
       }
     }
-  };
+  
 
   const handleAddFavorite = async (vinylId) => {
     try {
@@ -121,11 +118,34 @@ function AllVinyls() {
 
   if (allVinylsClone.length === 0) {
     return (
+      
+    <div>
       <div>
+        <form>
+          <label htmlFor="query"></label>
+          <input
+            type="text"
+            name="query"
+            value={queryVinyl}
+            onChange={handleShearchinput}
+          />
+        </form>
+        <button onClick={handleShearch}>Buscar</button>
+      </div>
+      <div>
+        <button onClick={handlefilterRock}>Rock</button>
+        <button onClick={handlefilterPop}>Pop</button>
+        <button onClick={handlefilterHipHop}>Hip-Hop</button>
+        <button onClick={handlefilterJazz}>Jazz</button>
+        <button onClick={handlefilterElectronica}>Electronica</button>
+        <button onClick={handlefilterSoul}>Soul</button>
+        <button onClick={handlefilterReagge}>Reagge</button>
+        <button onClick={handlefilterOther}>Otros</button>
+        <button onClick={handleAll}>Todos</button>
+        
+      </div>
         <h3>No hay vinilos de este genero</h3>
-        <Link onClick={handleAll}>
-          <h5>Todos los vinilos</h5>
-        </Link>
+
       </div>
     );
   }
@@ -153,9 +173,7 @@ function AllVinyls() {
         <button onClick={handlefilterSoul}>Soul</button>
         <button onClick={handlefilterReagge}>Reagge</button>
         <button onClick={handlefilterOther}>Otros</button>
-        <Link onClick={handleAll}>
-          <h5>Todos los vinilos</h5>
-        </Link>
+        <button onClick={handleAll}>Todos</button>
       </div>
       <div>
         

@@ -24,7 +24,7 @@ function OperationConfirm() {
       setOperationConfirm(operation.data);
       console.log(
         "aquí recibo el objeto de la operación desde BE",
-        operation.data.product._id
+        operation.data
       );  
     } catch (error) {
       console.log("Este error lo odio");
@@ -41,7 +41,14 @@ function OperationConfirm() {
     return <h3>confirmando operación</h3>;
   }
 
+
+  const año = operationConfirm.createdAt.slice(0, 4)
+  const mes = operationConfirm.createdAt.slice(5, 7)
+  const dia = operationConfirm.createdAt.slice(8, 10)
+  
   return (
+    
+
     <div>
       {buttonValue === true ? (
         <div>
@@ -55,6 +62,7 @@ function OperationConfirm() {
           <p>Usuario comprador: {operationConfirm.buyerUser.name}</p>
           <p>Usuario vendedor: {operationConfirm.sellerUser.name}</p>
           <p>Precio: {operationConfirm.totalPrice}</p>
+          <p>Fecha de operación: {`La operación se ha realizado el ${dia} del ${mes} del ${año}`} </p>
 
           <button onClick={handleButtonChange}>Confirmar compra</button>
         </div>
