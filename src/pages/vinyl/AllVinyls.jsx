@@ -182,7 +182,7 @@ function AllVinyls() {
           // console.log(activeUserId)
           return (
             <>
-              {eachVinyl.onSale === true ? (
+             
                 <div key={eachVinyl._id}>
                   <h2>{eachVinyl.title}</h2>
                   <h4>{eachVinyl.artist}</h4>
@@ -201,7 +201,7 @@ function AllVinyls() {
                     </>
                   ) : null}
                 </div>
-              ) : null}
+             
             </>
           );
         })}
