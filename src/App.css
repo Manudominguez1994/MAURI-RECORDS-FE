@@ -1,5 +1,6 @@
 #root {
   text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 a {
@@ -8,8 +9,13 @@ a {
 }
 /* NavBar */
 
-.navbarButton{
+.navbar{
   color: rgb(17, 16, 16);
-  background-color: rgb(212, 138, 35);
+  margin: 0;
+}
+.LinkNavbar{
+  text-decoration: none;
+  color: rgb(47, 46, 46);
+
 }
 
