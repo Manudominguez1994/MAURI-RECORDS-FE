@@ -13,9 +13,12 @@ function OperationConfirm() {
   console.log("id dinamnica de operation", params);
 
   useEffect(() => {
-    getOperationConfirm();
-    // handleOnsale();
-    setButtonValue(true);
+    setTimeout(() => {
+      
+      getOperationConfirm();
+      // handleOnsale();
+      setButtonValue(true);
+    }, 2000);
   }, []);
 
   const getOperationConfirm = async () => {
@@ -52,7 +55,7 @@ function OperationConfirm() {
   };
 
   if (operationConfirm === "") {
-    return <h3>confirmando operación</h3>;
+    return <Spinner animation="grow" variant="primary"/>
   }
 
 

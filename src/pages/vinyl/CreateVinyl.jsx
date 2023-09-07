@@ -91,7 +91,7 @@ function CreateVinyl() {
 
   return (
     <>
-      <div>CREAR VINILO</div>
+      <div>SUBE TU VINILO</div>
       
 
       { errorMessage ? <p>{errorMessage}</p> : null }  

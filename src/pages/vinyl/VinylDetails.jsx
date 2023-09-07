@@ -5,6 +5,8 @@ import service from "../../services/service.config";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 
+import Spinner from 'react-bootstrap/Spinner'
+
 function VinylDetails() {
   const navigate = useNavigate();
   const params = useParams();
@@ -58,7 +60,12 @@ function VinylDetails() {
   };
 
   if (eachVinyl === null) {
-    return <h3>...Buscando</h3>;
+    return (
+    <div className='spinners'>
+     <Spinner animation="grow" variant="primary" />
+    </div>
+      
+    )
   }
 
   return (

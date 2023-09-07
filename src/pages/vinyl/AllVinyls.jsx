@@ -145,7 +145,6 @@ function AllVinyls() {
         
       </div>
         <h3>No hay vinilos de este genero</h3>
-
       </div>
     );
   }

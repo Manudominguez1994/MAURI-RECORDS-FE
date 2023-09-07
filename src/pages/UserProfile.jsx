@@ -15,10 +15,7 @@ function UserProfile() {
   
 
   useEffect(() => {
-    
-    setTimeout(() => {
       getUserObj();
-    }, 2000);
   }, []);
 
   const getUserObj = async () => {
@@ -44,8 +41,9 @@ function UserProfile() {
   if (userObj === null) {
     return (
      <>
-     <p>Hola</p>
-      <Spinner animation="grow" variant="primary" />
+      <div className='spinners'>
+        <Spinner animation="grow" variant="primary" />
+      </div>
      </>
     )
   }
