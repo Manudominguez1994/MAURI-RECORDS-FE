@@ -190,6 +190,7 @@ if (titleInput === null && artistInput  === null && imageInput  === null && desc
         <br />
 
         <button type="submit">Guardar cambios</button>
+        <Link to={`/vinylDetails/${vinylId}`}><button>Cancelar</button></Link>
       </form>
 
      {/* <Link to={`/vinylDetails/${vinylId}/editImage`}><button>Cambiar Imagen</button></Link>  */}

@@ -48,7 +48,13 @@ function Ventas() {
       {onsaleSale === true ? (
         <div>
           {onSaleVinyls.map((eachVinyl) => {
-            return <h3>{eachVinyl.title}</h3>;
+            return (
+              <>
+              <h3><Link to={`/vinylDetails/${eachVinyl._id}`}>{eachVinyl.title}</Link></h3>
+              <h3>{eachVinyl.artist}</h3>
+              <img src={eachVinyl.image} alt="" />
+              </>
+            )
           })}
         </div>
       ) : (
