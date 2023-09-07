@@ -32,9 +32,23 @@ function OperationConfirm() {
     }
   };
 
+  const handleOperationDelete = async () => {
+    try {
+      await service.delete(`/operation/delete/${params.operationId}`)
+    } catch (error) {
+      navigate(error)
+    }
+  }
 
-  const handleButtonChange = () => {
-    setButtonValue(false);
+
+  const handleButtonChange = async (vinylId) => {
+    try {
+      await service.post(`/operation/update-on-sale/${vinylId}`)
+      setButtonValue(false);
+      
+    } catch (error) {
+      navigate(error)
+    }
   };
 
   if (operationConfirm === "") {
@@ -64,7 +78,8 @@ function OperationConfirm() {
           <p>Precio: {operationConfirm.totalPrice}</p>
           <p>Fecha de operación: {`La operación se ha realizado el ${dia} del ${mes} del ${año}`} </p>
 
-          <button onClick={handleButtonChange}>Confirmar compra</button>
+          <button onClick={() => handleButtonChange(operationConfirm.product._id)}>Confirmar compra</button>
+          <Link to='/'><button onClick={handleOperationDelete}>Cancelar</button></Link>
         </div>
       ) : (
         <div>

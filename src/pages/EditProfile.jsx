@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import service from "../services/service.config";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 // import { uploadImageService } from "../services/cloud.services";
 //importar contexto
 import { useContext } from "react";
@@ -126,6 +126,8 @@ function EditProfile() {
         <button type="submit">Guardar cambios</button>
       </form>
       <button onClick={handleDelete}>Eliminar usuario</button>
+      <Link to={'/my-profile'}><button>Cancelar</button></Link>
+
     </div>
   );
 }

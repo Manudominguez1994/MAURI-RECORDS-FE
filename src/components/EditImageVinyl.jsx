@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import service from "../services/service.config";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { uploadImageService } from "../services/cloud.services";
 
 function EditImage() {
@@ -66,6 +66,7 @@ function EditImage() {
         ) : null}
         <br />
         <button disabled={isUploading} >Actualizar imagen</button>
+        <Link to={`/vinylDetails/${params.vinyl}`}><button>Cancelar</button></Link>
       </form>
     </div>
   );
