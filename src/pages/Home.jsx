@@ -12,7 +12,10 @@ function Home() {
     <div className="allVinyls-container">
       
       <h1>MAURI RECORDS</h1>
-      { isUserActive === true ? <AllVinyls/> : <p>¡Si quieres comprar vinilos<Link to={'/login'}>inicia sesión!</Link> </p>} 
+      { isUserActive === true ? (<AllVinyls/>) :
+       (<div className='divPrincipal'>
+        <p>¡Si quieres comprar vinilos<Link to={'/login'} style={{color:'black'}}>inicia sesión!</Link> </p></div>)
+       } 
     </div>
   )
 }

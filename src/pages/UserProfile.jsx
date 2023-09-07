@@ -46,7 +46,7 @@ function UserProfile() {
   if (userObj === null) {
     return (
      <>
-     <p>Hola</p>
+     
       <Spinner animation="grow" variant="primary" />
      </>
     )
@@ -55,12 +55,12 @@ function UserProfile() {
   return (
     <div className="divProfileFather">
       <div className="divProfileData">
-        <Card style={{ width: 700 }} className="divProfileData">
+        <Card style={{ width: 500 }} className="divProfileData">
           <Card.Img
             variant="top"
             src={userObj.image}
             alt="imageprofile"
-            style={{ width: 600, padding: 50, }}
+            style={{ width: 300, padding: 50, }}
           />
           <Card.Body>
             <Card.Title>

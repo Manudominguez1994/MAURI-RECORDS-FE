@@ -89,6 +89,7 @@ a {
   border-radius: 10px;
   color: white;
   margin-bottom: 10px;
+  width: 500px;
 }
 .divPestañasYData{
   display: flex;
@@ -108,7 +109,7 @@ a {
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
-  width: 700px;
+  width: 500px;
 }
 .divProfilePestañasContent{
   background-color: #5b5a5a;
@@ -118,7 +119,7 @@ a {
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
-  width: 700px;
+  width: 500px;
   
 }
 .divProfilePestañasContent h3{
@@ -137,7 +138,7 @@ a {
   align-items: center;
   border: 1px;
   border-radius: 10px;
-  width: 700px;
+  width: 500px;
   text-decoration: none;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -149,7 +150,7 @@ a {
   position: flex;
   flex-direction: column;
   align-items: center;
-  width: 700px;
+  width: 500px;
   border-radius: 10px;
 }
 
@@ -163,7 +164,7 @@ a {
   align-items: center;
   border: 1px;
   border-radius: 10px;
-  width: 700px;
+  width: 500px;
   text-decoration: none;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -227,6 +228,20 @@ a {
   width: 100vw;
   padding-top: 50px;
   color: white;
+  text-align: center;
+  /* align-items: center; */
+  
+}
+
+.allVinyls-container-flex {
+  background-color:  rgb(36, 36, 36);
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+
 }
 
 
@@ -251,7 +266,7 @@ margin-top: 24px;
   background-color: rgb(36, 36, 36);
   color: whitesmoke;
   border-radius: 16px;
-  margin: 0 auto 10px;
+  margin: 0 auto 44px;
   padding: 24px;
   background-color: rgb(173, 173, 173);
 }
@@ -286,4 +301,16 @@ margin-top: 24px;
 .album-details-image{
   width: 350px;
   margin-top: 24px;
+}
+
+.divPrincipal{
+  
+  background-image: url("https://res.cloudinary.com/dausfjvtt/image/upload/v1694126402/Mauri%20Records/whujop6pgmq7y95qve7g.jpg");
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  padding-top: 30px;
+  margin-top: 50px;
+  color: black;
+  text-align: center;
 }
