@@ -5,6 +5,9 @@ import service from "../../services/service.config";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 
+import Spinner from 'react-bootstrap/Spinner'
+import Button from 'react-bootstrap/Button';
+
 function VinylDetails() {
   const navigate = useNavigate();
   const params = useParams();
@@ -58,36 +61,61 @@ function VinylDetails() {
   };
 
   if (eachVinyl === null) {
-    return <h3>...Buscando</h3>;
+    return (
+    <div className='spinners'>
+     <Spinner animation="grow" variant="primary" />
+    </div>
+      
+    )
   }
 
   return (
-    <div>
+    <div className="details-father">
       {errorMessage ? <p>{errorMessage}</p> : null}
-      <h2>{eachVinyl.title}</h2>
-      <h4>{eachVinyl.artist}</h4>
-      <img src={eachVinyl.image} alt="imagen cloudinary no funciona" />
-      <p>{eachVinyl.description}</p>
-      <p>{eachVinyl.price}€</p>
-      <p>{eachVinyl.stateConservation}</p>
-      <p>{eachVinyl.genre}</p>
-      <h4>Vinilo vendido por : {eachVinyl.sellerUser.name} </h4>
-      <div>
-        {eachVinyl.sellerUser._id === activeUserId ? (
-          <div>
-            <Link to={`/vinylDetails/${eachVinyl._id}/editImage`}>
-              <button>Cambiar Imagen</button>
-            </Link>
-            <Link to={`/vinylDetails/${eachVinyl._id}/edit`}>
-              <button>Editar Vinilo</button>
-            </Link>
-            <button onClick={handleDelete}>Borrar</button>
+      <div className="album-image-container">
+        <div>
+          <img className='album-details-image' src={eachVinyl.image} alt="imagen cloudinary no funciona" />
+        </div>
+        <div>
+          <h2>{eachVinyl.title}</h2>
+        </div>
+        <div>
+          <h3>{eachVinyl.artist}</h3>
+        </div>
+        <div>
+          <p>{eachVinyl.description}</p>
+        </div>
+        <div>
+          <p>{eachVinyl.price}€</p>
+        </div>
+        <div>
+          <p>{eachVinyl.stateConservation}</p>
+        </div>
+        <div>
+          <p>{eachVinyl.genre}</p>
+        </div>
+        <div>
+          <p>Vinilo vendido por {eachVinyl.sellerUser.name} </p>
+        </div>
+        <div>
+          {eachVinyl.sellerUser._id === activeUserId ? (
+            <div>
+              <Link to={`/vinylDetails/${eachVinyl._id}/editImage`}>
+                <Button variant="warning">Cambiar Imagen</Button>
+              </Link>
+              <Link to={`/vinylDetails/${eachVinyl._id}/edit`}>
+                <Button variant="warning" >Editar Vinilo</Button>
+              </Link>
+              <Button variant="warning" onClick={handleDelete}>Borrar</Button>
+              <Link to="/"><Button variant="warning">Cancelar</Button></Link>
+            </div>
+          ) : (
+            <div>
+              <Button variant="warning" onClick={handleOperationCreate}>Comprar</Button>
+              <Link to="/"><Button variant="warning">Cancelar</Button></Link>
           </div>
-        ) : (
-          <div>
-            <button onClick={handleOperationCreate}>Comprar</button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

@@ -9,9 +9,10 @@ function Home() {
   const { activeUserId, isUserActive } = useContext(AuthContext);
 
   return (
-    <div>
-      <h2>MAURI RECORDS</h2>
-      { isUserActive === true ? <AllVinyls/> : <p>¡Si quieres comprar vinilos<Link to={'/login'} className="enlaces">inicia sesión!</Link> </p>} 
+    <div className="allVinyls-container">
+      
+      <h1>MAURI RECORDS</h1>
+      { isUserActive === true ? <AllVinyls/> : <p>¡Si quieres comprar vinilos<Link to={'/login'}>inicia sesión!</Link> </p>} 
     </div>
   )
 }

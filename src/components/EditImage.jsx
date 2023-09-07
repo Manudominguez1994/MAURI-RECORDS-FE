@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { uploadImageService } from "../services/cloud.services";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Spinner from 'react-bootstrap/Spinner'
 
 function EditImage() {
 
@@ -57,7 +58,11 @@ function EditImage() {
             disabled={isUploading}
           />
         </div>
-        {isUploading ? <h3>... uploading image</h3> : null}
+        {isUploading ? 
+          <div className='spinners'>
+            <Spinner animation="grow" variant="primary" />
+          </div> 
+        : null}
         {imageUrl ? (
           <div>
             <img src={imageUrl} alt="img" width={350} />

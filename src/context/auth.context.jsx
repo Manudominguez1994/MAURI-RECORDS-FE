@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import service from "../services/service.config";
+import Spinner from 'react-bootstrap/Spinner'
 
 const AuthContext = createContext()
 
@@ -51,15 +52,17 @@ function AuthWrapper(props) {
     //cláusula de guardia para toda la pag
 
     if (isPageLogin === true) {
-        return <h3>Validando credenciales</h3>
+        return (
+        <div className='spinners'>
+         <Spinner animation="grow" variant="primary" />
+        </div> 
+        )
     }
 
 
     return (
         <AuthContext.Provider value={passedContext}>
-
             {props.children}
-
         </AuthContext.Provider>
     )
 }

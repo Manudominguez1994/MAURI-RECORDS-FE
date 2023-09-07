@@ -4,6 +4,7 @@ import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from 'react-router-dom'
 import { AuthWrapper } from './context/auth.context.jsx'
 

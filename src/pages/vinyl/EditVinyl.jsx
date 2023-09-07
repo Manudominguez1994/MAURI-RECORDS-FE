@@ -4,6 +4,9 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
+import Spinner from 'react-bootstrap/Spinner'
+
+
 function EditVinyl() {
 
   const AllGenre = [
@@ -71,7 +74,7 @@ const handleGenreChange = (event) => {
 
 // efectua la llamada cuando se monta el componente
 useEffect(() => {
-    getVinylDetails()
+  getVinylDetails()
 }, [])
 
 // configuramos la llamada al BE que nos trae la info por defecto del vinilo
@@ -118,7 +121,11 @@ const handleSubmit = async (event) => {
 
 
 if (titleInput === null && artistInput  === null && imageInput  === null && descriptionInput  === null && priceInput  === null && stateConservationInput  === null && genreInput === null) {
-    return <h3>...cargando cambios</h3>
+    return (
+    <div className='spinners'>
+      <Spinner animation="grow" variant="primary" />
+    </div>
+    )
 }
 
 

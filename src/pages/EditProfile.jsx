@@ -6,6 +6,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 
+import Spinner from 'react-bootstrap/Spinner'
+
 
 // FUNCIÓN PRINCIPAL
 function EditProfile() {
@@ -53,7 +55,7 @@ function EditProfile() {
 
   // efectúa la llamada del getUserObj cuando se monta el componente (ciclo de vida inicial)
   useEffect(() => {
-    getUserObj();
+      getUserObj();
   }, []);
 
   // llamar a BE y traer los valores predeterminados en el perfil de usuario
@@ -100,7 +102,7 @@ function EditProfile() {
   };
 
   if (imageUrl === null || name === "" || city === "") {
-    return <h3>Buscando </h3>;
+    return <div className='spinners'><Spinner animation="grow" variant="primary" /></div>
   }
   // este es el render
   return (

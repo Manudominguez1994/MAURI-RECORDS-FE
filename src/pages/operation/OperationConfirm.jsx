@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import service from "../../services/service.config";
 
+import Spinner from 'react-bootstrap/Spinner'
+
 function OperationConfirm() {
   const [operationConfirm, setOperationConfirm] = useState("");
   const [buttonValue, setButtonValue] = useState(true);
@@ -52,7 +54,11 @@ function OperationConfirm() {
   };
 
   if (operationConfirm === "") {
-    return <h3>confirmando operación</h3>;
+    return (
+     <div className='spinners'>
+       <Spinner animation="grow" variant="primary" />
+     </div> 
+    )
   }
 
 

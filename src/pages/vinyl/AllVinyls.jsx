@@ -3,6 +3,11 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import service from "../../services/service.config";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
+
 
 function AllVinyls() {
   const navigate = useNavigate();
@@ -119,90 +124,115 @@ function AllVinyls() {
   if (allVinylsClone.length === 0) {
     return (
       
-    <div>
-      <div>
-        <form>
-          <label htmlFor="query"></label>
-          <input
-            type="text"
-            name="query"
-            value={queryVinyl}
-            onChange={handleShearchinput}
-          />
-        </form>
-        <button onClick={handleShearch}>Buscar</button>
+    <div className="allVinyls-container">
+      <div className="SearchAndBtn">
+        <div className="search-input">
+        <Form>
+            <InputGroup>
+                <Form.Control
+                  type="text"
+                  name="query"
+                  value={queryVinyl}
+                  onChange={handleShearchinput}
+                  placeholder="Busca tu album o artista favorito"
+                />
+            <Button variant="warning" onClick={handleShearch}>Buscar</Button>
+          </InputGroup>
+        </Form>
+        
+        </div>
       </div>
       <div>
-        <button onClick={handlefilterRock}>Rock</button>
-        <button onClick={handlefilterPop}>Pop</button>
-        <button onClick={handlefilterHipHop}>Hip-Hop</button>
-        <button onClick={handlefilterJazz}>Jazz</button>
-        <button onClick={handlefilterElectronica}>Electronica</button>
-        <button onClick={handlefilterSoul}>Soul</button>
-        <button onClick={handlefilterReagge}>Reagge</button>
-        <button onClick={handlefilterOther}>Otros</button>
-        <button onClick={handleAll}>Todos</button>
+        <Button className="genre-btn" variant="outline-warning" onClick={handlefilterRock}>Rock</Button>
+        <Button className="genre-btn" variant="outline-warning" onClick={handlefilterPop}>Pop</Button>
+        <Button className="genre-btn" variant="outline-warning" onClick={handlefilterHipHop}>Hip-Hop</Button>
+        <Button className="genre-btn" variant="outline-warning" onClick={handlefilterJazz}>Jazz</Button>
+        <Button className="genre-btn" variant="outline-warning" onClick={handlefilterElectronica}>Electronica</Button>
+        <Button className="genre-btn" variant="outline-warning" onClick={handlefilterSoul}>Soul</Button>
+        <Button className="genre-btn" variant="outline-warning" onClick={handlefilterReagge}>Reagge</Button>
+        <Button className="genre-btn" variant="outline-warning" onClick={handlefilterOther}>Otros</Button>
+        <Button className="genre-btn" variant="outline-warning" onClick={handleAll}>Todos</Button>
         
       </div>
         <h3>No hay vinilos de este genero</h3>
-
       </div>
     );
   }
 
   return (
-    <div>
+    <div className="allVinyls-container">
+      
       <div>
-        <form>
-          <label htmlFor="query"></label>
-          <input
-            type="text"
-            name="query"
-            value={queryVinyl}
-            onChange={handleShearchinput}
-          />
-        </form>
-        <button onClick={handleShearch}>Buscar</button>
+        <div className="searchAndBtn">
+        <Form>
+          <InputGroup >
+          <div className="search-input">
+            <Form.Control
+              type="text"
+              name="query"
+              value={queryVinyl}
+              onChange={handleShearchinput}
+              placeholder="Busca tu album o artista favorito"
+            />
+          </div>
+              <Button variant="warning" onClick={handleShearch}>Buscar</Button>
+            </InputGroup>
+        </Form>
+        </div>
       </div>
       <div>
-        <button onClick={handlefilterRock}>Rock</button>
-        <button onClick={handlefilterPop}>Pop</button>
-        <button onClick={handlefilterHipHop}>Hip-Hop</button>
-        <button onClick={handlefilterJazz}>Jazz</button>
-        <button onClick={handlefilterElectronica}>Electronica</button>
-        <button onClick={handlefilterSoul}>Soul</button>
-        <button onClick={handlefilterReagge}>Reagge</button>
-        <button onClick={handlefilterOther}>Otros</button>
-        <button onClick={handleAll}>Todos</button>
+        <Button className="genre-btn" variant="outline-warning" onClick={handlefilterRock}>Rock</Button>
+        <Button className="genre-btn" variant="outline-warning" onClick={handlefilterPop}>Pop</Button>
+        <Button className="genre-btn" variant="outline-warning" onClick={handlefilterHipHop}>Hip-Hop</Button>
+        <Button className="genre-btn" variant="outline-warning" onClick={handlefilterJazz}>Jazz</Button>
+        <Button className="genre-btn" variant="outline-warning" onClick={handlefilterElectronica}>Electronica</Button>
+        <Button className="genre-btn" variant="outline-warning" onClick={handlefilterSoul}>Soul</Button>
+        <Button className="genre-btn" variant="outline-warning" onClick={handlefilterReagge}>Reagge</Button>
+        <Button className="genre-btn" variant="outline-warning" onClick={handlefilterOther}>Otros</Button>
+        <Button className="genre-btn" variant="outline-warning" onClick={handleAll}>Todos</Button>
       </div>
       <div>
         
         {allVinylsClone.map((eachVinyl) => {
-          // console.log(eachVinyl.sellerUser)
-          // console.log(activeUserId)
+          
           return (
-            <>
+            <div className="allVinyls-container">
              
-                <div key={eachVinyl._id}>
-                  <h2>{eachVinyl.title}</h2>
-                  <h4>{eachVinyl.artist}</h4>
-                  <img src={eachVinyl.image} alt="image" />
-                  <p>{eachVinyl.price}</p>
-                  <p>{eachVinyl.genre}</p>
+                <div className="album-card" key={eachVinyl._id}>
+                  <div className="album-image-container">
+                    <img className="album-image" src={eachVinyl.image} alt="image" />
+                  </div>
+                 
+                    <div className="album-props">
+                      <h2>{eachVinyl.title}</h2>
+                    </div>
+                    <div className="album-props">
+                      <h3>{eachVinyl.artist}</h3>
+                    </div>
+                    <div className="album-props">
+                      <h5>{eachVinyl.price}€</h5>
+                    </div>
+                    <div className="album-props">
+                      <h5>{eachVinyl.genre}</h5>
+                    </div>
+                  <div className="vinyl-card-btn">
                   <Link to={`/vinylDetails/${eachVinyl._id}`}>
-                    <button>Destalles</button>
+                    <Button variant="warning">Detalles</Button>
                   </Link>
                   {eachVinyl.sellerUser !== activeUserId ? (
                     <>
-                    <button onClick={()=> handleOperationCreate(eachVinyl._id)}>Comprar</button>
-                    <button onClick={() => handleAddFavorite(eachVinyl._id)}>
-                      Favoritos
-                    </button>
+                      <Link>
+                        <Button variant="warning" onClick={()=> handleOperationCreate(eachVinyl._id)}>Comprar</Button>
+                      </Link>
+                      <Link>
+                        <Button variant="warning" onClick={() => handleAddFavorite(eachVinyl._id)}>Favoritos</Button>
+                      </Link>
                     </>
                   ) : null}
+                  </div>
                 </div>
              
-            </>
+            </div>
           );
         })}
       </div>

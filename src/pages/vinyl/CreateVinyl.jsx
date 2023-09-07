@@ -4,6 +4,10 @@ import { useNavigate, Link } from "react-router-dom";
 import { uploadImageService } from "../../services/cloud.services";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Spinner from 'react-bootstrap/Spinner';
+
+
+
 
 function CreateVinyl() {
   const navigate = useNavigate();
@@ -34,7 +38,7 @@ function CreateVinyl() {
   const [artist, setArtist] = useState("");
 
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(null);
   const [stateConservation, setStateConservation] = useState("");
   const [genre, setGenre] = useState("");
 
@@ -104,7 +108,10 @@ function CreateVinyl() {
 
   return (
     <div className="viniloCreateContainer">
-      <h3>CREAR VINILO</h3>
+     
+    
+      <div>SUBE TU VINILO</div>
+      
 
       {errorMessage ? <p>{errorMessage}</p> : null}
       <Form onSubmit={handleSubmit}>
@@ -117,7 +124,11 @@ function CreateVinyl() {
             disabled={isUploading}
           />
         </div>
-        {isUploading ? <h3>... uploading image</h3> : null}
+        {isUploading ?  
+        <div className='spinners'>
+          <Spinner animation="grow" variant="primary" />
+        </div> 
+        : null}
         {imageUrl ? (
           <div>
             <img src={imageUrl} alt="img" width={200} />
