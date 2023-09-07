@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import AllVinyls from "../pages/vinyl/AllVinyls"
 
 function Home() {
 
@@ -10,10 +11,7 @@ function Home() {
   return (
     <div>
       <h2>MAURI RECORDS</h2>
-      { isUserActive === true ? (<Link to={"/allVinyls"}>Accede a la tienda de vinilos</Link>) : <p>¡Si quieres comprar vinilos<Link to={'/login'}>inicia sesión!</Link> </p>} 
-      
-
-
+      { isUserActive === true ? <AllVinyls/> : <p>¡Si quieres comprar vinilos<Link to={'/login'}>inicia sesión!</Link> </p>} 
     </div>
   )
 }

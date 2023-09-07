@@ -35,7 +35,7 @@ function Login() {
 
       await verifyToken()
 
-      navigate('/my-profile')
+      navigate('/')
 
     } catch (error) {
       if (error.response && error.response.status === 400) {
