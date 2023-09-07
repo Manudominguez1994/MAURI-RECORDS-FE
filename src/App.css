@@ -6,5 +6,10 @@ a {
   margin: 10px;
   color: white;
 }
+/* NavBar */
 
+.navbarButton{
+  color: rgb(17, 16, 16);
+  background-color: rgb(212, 138, 35);
+}
 
