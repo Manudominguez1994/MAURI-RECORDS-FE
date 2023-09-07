@@ -1,4 +1,4 @@
-import Navbar from './components/Navbar'
+import NavbarComp from './components/NavbarComp'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Home from './pages/Home'
@@ -6,7 +6,7 @@ import UserProfile from './pages/UserProfile'
 import Error from './pages/Error'
 import NotFound from './pages/NotFound'
 import { Routes, Route } from 'react-router-dom'
-import './App.css'
+
 
 import IsPrivate from './components/IsPrivate'
 import EditProfile from './pages/EditProfile'
@@ -21,6 +21,7 @@ import OperationConfirm from './pages/operation/OperationConfirm'
 
 
 
+
 function App() {
 
   
@@ -28,7 +29,7 @@ function App() {
 
   return (
     <>
-      <Navbar />
+    <NavbarComp/>
 
       <Routes>
         {/* Global routes */}
