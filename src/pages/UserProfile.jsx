@@ -6,6 +6,8 @@ import Favoritos from "./Favoritos";
 import Compras from "../components/Compras";
 import Ventas from "../components/Ventas";
 
+import Spinner from 'react-bootstrap/Spinner'
+
 function UserProfile() {
   const navigate = useNavigate();
   const [userObj, setUserObj] = useState(null);
@@ -13,7 +15,10 @@ function UserProfile() {
   
 
   useEffect(() => {
-    getUserObj();
+    
+    setTimeout(() => {
+      getUserObj();
+    }, 2000);
   }, []);
 
   const getUserObj = async () => {
@@ -37,7 +42,12 @@ function UserProfile() {
   }
 
   if (userObj === null) {
-    return <h3>Cargando</h3>;
+    return (
+     <>
+     <p>Hola</p>
+      <Spinner animation="grow" variant="primary" />
+     </>
+    )
   }
 
   return (
