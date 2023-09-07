@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import service from "../services/service.config";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { uploadImageService } from "../services/cloud.services";
-
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 function EditImage() {
 
   const navigate = useNavigate() 
@@ -47,11 +48,11 @@ function EditImage() {
 }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Image: </label>
-          <input
+    <div className="formeditImg">
+      <Form onSubmit={handleSubmit}>
+        <div >
+          
+          <Form.Control
             type="file"
             name="image"
             onChange={handleFileUpload}
@@ -64,10 +65,10 @@ function EditImage() {
             <img src={imageUrl} alt="img" width={200} />
           </div>
         ) : null}
-        <br />
-        <button disabled={isUploading} >Actualizar imagen</button>
-        <Link to={`/vinylDetails/${params.vinyl}`}><button>Cancelar</button></Link>
-      </form>
+       <br />
+        <Button disabled={isUploading} variant="outline-warning" >Actualizar imagen</Button>
+        <Link to={`/vinylDetails/${params.vinyl}`}><Button variant="outline-warning">Cancelar</Button></Link>
+      </Form>
     </div>
   );
 }

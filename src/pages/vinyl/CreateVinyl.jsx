@@ -2,23 +2,37 @@ import { useState } from "react";
 import service from "../../services/service.config";
 import { useNavigate, Link } from "react-router-dom";
 import { uploadImageService } from "../../services/cloud.services";
-
-
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 function CreateVinyl() {
   const navigate = useNavigate();
 
-  const [ errorMessage, setErrorMessage ] = useState('')
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [imageUrl, setImage] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
 
-  const AllGenre =  ["Rock", "Pop", "Hip-Hop", "Jazz", "Electronica", "Soul", "Reagge","Otros"]
-  const AllState = ["Como Nuevo", "Buen estado", "Algo desgastado", "Muy Desgastado"]
+  const AllGenre = [
+    "Rock",
+    "Pop",
+    "Hip-Hop",
+    "Jazz",
+    "Electronica",
+    "Soul",
+    "Reagge",
+    "Otros",
+  ];
+  const AllState = [
+    "Como Nuevo",
+    "Buen estado",
+    "Algo desgastado",
+    "Muy Desgastado",
+  ];
 
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
-  
+
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [stateConservation, setStateConservation] = useState("");
@@ -48,28 +62,28 @@ function CreateVinyl() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-    const response = await service.post("/vinyl/create", {
+      const response = await service.post("/vinyl/create", {
         title,
         artist,
-        image:imageUrl,
+        image: imageUrl,
         description,
         price,
         stateConservation,
         genre,
       });
-    //  console.log(response.data);
+      //  console.log(response.data);
       navigate(`/vinylDetails/${response.data._id}`);
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        setErrorMessage(error.response.data.errorMessage)
+        setErrorMessage(error.response.data.errorMessage);
       } else {
-      navigate('/error')
+        navigate("/error");
       }
     }
   };
 
-   // subimos la imagen del formulario
-   const handleFileUpload = async (event) => {
+  // subimos la imagen del formulario
+  const handleFileUpload = async (event) => {
     if (!event.target.files[0]) {
       return;
     }
@@ -83,22 +97,20 @@ function CreateVinyl() {
 
       setImage(response.data.imageUrl);
       setIsUploading(false);
-     
     } catch (error) {
       navigate("/error");
     }
   };
 
   return (
-    <>
-      <div>CREAR VINILO</div>
-      
+    <div className="viniloCreateContainer">
+      <h3>CREAR VINILO</h3>
 
-      { errorMessage ? <p>{errorMessage}</p> : null }  
-      <form onSubmit={handleSubmit}>
-      <div>
-          <label>Image: </label>
-          <input
+      {errorMessage ? <p>{errorMessage}</p> : null}
+      <Form onSubmit={handleSubmit}>
+        <div>
+          <Form.Label>Image </Form.Label>
+          <Form.Control
             type="file"
             name="image"
             onChange={handleFileUpload}
@@ -111,79 +123,80 @@ function CreateVinyl() {
             <img src={imageUrl} alt="img" width={200} />
           </div>
         ) : null}
-        <br />
-        <label htmlFor="title">Título</label>
-        <input type="text" name="title" onChange={handleTitle} value={title} />
+        
+        <Form.Label htmlFor="title">Título</Form.Label>
+        <Form.Control type="text" name="title" onChange={handleTitle} value={title} placeholder="Titulo"/>
 
-        <br />
+        
 
-        <label htmlFor="artist">Banda</label>
-        <input
+        <Form.Label htmlFor="artist">Banda</Form.Label>
+        <Form.Control
           type="text"
           name="artist"
           onChange={handleArtist}
           value={artist}
+          placeholder="Artista o Banda"
         />
-
-        <br />
 
         
 
-        <label htmlFor="description">Descripción</label>
-        <input
+        <Form.Label htmlFor="description">Descripción</Form.Label>
+        <Form.Control
           type="text"
           name="description"
           onChange={handleDescription}
           value={description}
+          placeholder="Descripción"
         />
 
-        <br />
+        
 
-        <label htmlFor="price">Precio</label>
-        <input
+        <Form.Label htmlFor="price">Precio</Form.Label>
+        <Form.Control
           type="number"
           name="price"
           onChange={handlePrice}
           value={price}
+          placeholder="Precio"
         />
 
         <br />
 
-        <label htmlFor="stateConservation">Estado de conservación</label>
-        <select onChange={handleStateConservation}>
+        <Form.Label htmlFor="stateConservation">Estado de conservación</Form.Label>
+        <Form.Select onChange={handleStateConservation}>
           <option value="">Seleccionar</option>
-          {AllState.map((eachState)=>{
-            return(
+          {AllState.map((eachState) => {
+            return (
               <>
-              <option value={eachState}>{eachState}</option>
+                <option value={eachState}>{eachState}</option>
               </>
-            )
+            );
           })}
-        
-        </select>
+        </Form.Select>
 
-        <br />
-
-        <label htmlFor="genre">Género</label>
-          <select onChange={handleGenre}>
-            <option value="">Seleccionar</option>
-            {AllGenre.map((eachGenre)=>{
-            return(
-              <>
-              <option value={eachGenre}>{eachGenre}</option>
-              </>
-            )
-          })}
-
-          </select>
-
-        <br />
-        
-        <button type="submit">Subir vinilo</button>
-        <Link to='/'><button>Cancelar</button></Link>
-      </form>
       
-    </>
+        <Form.Label htmlFor="genre">Género</Form.Label>
+        
+      
+        <Form.Select onChange={handleGenre}>
+          <option value="">Seleccionar</option>
+          {AllGenre.map((eachGenre) => {
+            return (
+              <>
+                <option value={eachGenre}>{eachGenre}</option>
+              </>
+            );
+          })}
+        </Form.Select>
+
+       <br />
+
+        <Button variant="outline-warning" type="submit">Subir vinilo</Button>
+        <Link to="/">
+          <Button variant="outline-warning">Cancelar</Button>
+        </Link>
+      </Form>
+    </div>
   );
 }
 

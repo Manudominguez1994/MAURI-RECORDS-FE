@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import service from '../../services/service.config'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 function EditVinyl() {
 
@@ -121,17 +123,19 @@ if (titleInput === null && artistInput  === null && imageInput  === null && desc
 
 
   return (
-    <>
-    <div>EditVinyl</div>
+    
+    <div className="viniloCreateContainer">
 
-    <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Título</label>
-        <input type="text" name="title" value={titleInput} onChange={handleTitleChange}/>
+      <h3>Edita tu vinilo</h3>
+
+    <Form onSubmit={handleSubmit}>
+        <Form.Label htmlFor="title">Título</Form.Label>
+        <Form.Control type="text" name="title" value={titleInput} onChange={handleTitleChange}/>
 
         <br />
 
         <label htmlFor="artist">Banda</label>
-        <input
+        <Form.Control
           type="text"
           name="artist"
           value={artistInput}
@@ -141,8 +145,8 @@ if (titleInput === null && artistInput  === null && imageInput  === null && desc
         <br />
 
 
-        <label htmlFor="description">Descripción</label>
-        <input
+        <Form.Label htmlFor="description">Descripción</Form.Label>
+        <Form.Control
           type="text"
           name="description"
           value={descriptionInput}
@@ -152,8 +156,8 @@ if (titleInput === null && artistInput  === null && imageInput  === null && desc
 
         <br />
 
-        <label htmlFor="price">Precio</label>
-        <input
+        <Form.Label htmlFor="price">Precio</Form.Label>
+        <Form.Control
           type="number"
           name="price"
           value={priceInput}
@@ -163,8 +167,8 @@ if (titleInput === null && artistInput  === null && imageInput  === null && desc
 
         <br />
 
-        <label htmlFor="stateConservation">Estado de conservación</label>
-        <select value={stateConservationInput} onChange={handleStateConservationChange}>
+        <Form.Label htmlFor="stateConservation">Estado de conservación</Form.Label>
+        <Form.Select value={stateConservationInput} onChange={handleStateConservationChange}>
         {AllState.map((eachState) => {
             return (
               <>
@@ -172,12 +176,12 @@ if (titleInput === null && artistInput  === null && imageInput  === null && desc
               </>
             );
           })}
-        </select>
+        </Form.Select>
 
         <br />
 
-        <label htmlFor="genre">Género</label>
-        <select value={genreInput} onChange={handleGenreChange}>
+        <Form.Label htmlFor="genre">Género</Form.Label>
+        <Form.Select value={genreInput} onChange={handleGenreChange}>
         {AllGenre.map((eachGenre) => {
             return (
               <>
@@ -185,16 +189,16 @@ if (titleInput === null && artistInput  === null && imageInput  === null && desc
               </>
             );
           })}
-        </select>
+        </Form.Select>
 
         <br />
 
-        <button type="submit">Guardar cambios</button>
-        <Link to={`/vinylDetails/${vinylId}`}><button>Cancelar</button></Link>
-      </form>
+        <Button variant="outline-warning" type="submit">Guardar cambios</Button>
+        <Link to={`/vinylDetails/${vinylId}`}><Button variant="outline-warning">Cancelar</Button></Link>
+      </Form>
 
      {/* <Link to={`/vinylDetails/${vinylId}/editImage`}><button>Cambiar Imagen</button></Link>  */}
-    </>
+    </div>
   );
 }
   

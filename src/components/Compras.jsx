@@ -24,7 +24,7 @@ function Compras() {
   };
 
   return (
-    <div>
+    <div >
       <h3>Compras</h3>
 
       {allOperations.map((eachOperation) => {
@@ -36,14 +36,14 @@ function Compras() {
         return (
           <div>
             {activeUserId === eachOperation.buyerUser._id ? (
-              <div>
-                <h3>Album: {eachOperation.product.title}</h3>
-                <h3>Banda: {eachOperation.product.artist}</h3>
+              <div className="album-card">
                 <img
                   style={{ width: 200 }}
                   src={eachOperation.product.image}
                   alt=""
                 />
+                <h3>Album: {eachOperation.product.title}</h3>
+                <h3>Banda: {eachOperation.product.artist}</h3>
                 <p>Usuario comprador: {eachOperation.buyerUser.name}</p>
                 <p>Usuario vendedor: {eachOperation.sellerUser.name}</p>
                 <p>Precio: {eachOperation.totalPrice}</p>

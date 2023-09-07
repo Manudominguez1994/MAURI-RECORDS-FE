@@ -46,8 +46,9 @@ function Signup() {
   };
 
   return (
-    <div>
-      <h1>Registrate</h1>
+    <div className="divFatherSignUp">
+    <div className="divSignUp">
+      
       {errorMessage ? <p>{errorMessage}</p> : null}
       <Form onSubmit={handleSignup}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -81,30 +82,30 @@ function Signup() {
             placeholder="Enter email"
           />
         </Form.Group>
-        <br />
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Contraseña</Form.Label>
+          <Form.Control
+            type="password"
+            name="password"
+            value={password}
+            onChange={handlePasswordChange}
+            placeholder="Password"
+          />
+        </Form.Group>
 
-        <label>Contraseña: </label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePasswordChange}
-        />
-
-        <br />
-
-        <label>Confirma tu contraseña: </label>
-        <input
-          type="password"
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Confirma contraseña</Form.Label>
+        <Form.Control  type="password"
           name="confirmPassword"
           value={confirmPassword}
-          onChange={handleConfirmPasswordChange}
-        />
+          onChange={handleConfirmPasswordChange} placeholder="Password" />
+      </Form.Group>
 
-        <br />
+       
 
-        <button type="submit">Signup</button>
+        <Button variant="outline-secondary" type="submit">Registrate</Button>
       </Form>
+    </div>
     </div>
   );
 }

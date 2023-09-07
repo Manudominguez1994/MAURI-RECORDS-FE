@@ -5,20 +5,21 @@ import EditImage from "../components/EditImage";
 import Favoritos from "./Favoritos";
 import Compras from "../components/Compras";
 import Ventas from "../components/Ventas";
+import Nav from "react-bootstrap/Nav";
+import Spinner from "react-bootstrap/Spinner";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
-import Spinner from 'react-bootstrap/Spinner'
 
 function UserProfile() {
   const navigate = useNavigate();
   const [userObj, setUserObj] = useState(null);
-  const [numValue , setNumValue] = useState(0)
-  
+  const [numValue, setNumValue] = useState(0);
 
   useEffect(() => {
-    
     setTimeout(() => {
       getUserObj();
-    }, 2000);
+    }, 1000);
   }, []);
 
   const getUserObj = async () => {
@@ -32,49 +33,79 @@ function UserProfile() {
   };
 
   const handlenumValue1 = () => {
-    setNumValue(1)
-  }
+    setNumValue(1);
+  };
   const handlenumValue2 = () => {
-    setNumValue(2)
-  }
+    setNumValue(2);
+  };
   const handlenumValue3 = () => {
-    setNumValue(3)
-  }
+    setNumValue(3);
+  };
 
   if (userObj === null) {
     return (
-     <>
-     <p>Hola</p>
-      <Spinner animation="grow" variant="primary" />
-     </>
-    )
+      <>
+        <Spinner animation="grow" variant="primary" />
+      </>
+    );
   }
 
   return (
-    <div>
+    <div className="divProfileFather">
+      <div className="divProfileData">
+        <Card style={{ width: 700 }} className="divProfileData">
+          <Card.Img
+            variant="top"
+            src={userObj.image}
+            alt="imageprofile"
+            style={{ width: 600, padding: 50, }}
+          />
+          <Card.Body>
+            <Card.Title>
+              <h2>{userObj.name}</h2>
+            </Card.Title>
+            <Card.Text>
+              {" "}
+              <p>{userObj.email}</p>
+            </Card.Text>
+            <Card.Text>
+              {" "}
+              <h4>{userObj.city}</h4>
+            </Card.Text>
+
+            <Nav>
+              <Nav.Item>
+                <Link to={"/edit-image"} className="enlaces">Editar Imagen</Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Link to={"/edit-profile"} className="enlaces">Editar Perfil</Link>
+              </Nav.Item>
+            </Nav>
+          </Card.Body>
+        </Card>
+      </div>
+     
+        <div className="divPestañasYData">
+          <div className="divProfilePestañas">
+            
+            
+                <Button variant="outline-secondary" onClick={handlenumValue1} style={{marginLeft:10,marginRight:10}}>Compras</Button>
+              
+            
+                <Button variant="outline-secondary" onClick={handlenumValue2} style={{marginLeft:10,marginRight:10}}>Ventas</Button>
+              
+            
+                <Button variant="outline-secondary" onClick={handlenumValue3} style={{marginLeft:10,marginRight:10}}>Favoritos</Button>
+              
+            
+          </div>
+          <div className="divProfilePestañasContent">
+            {numValue === 1 ? <Compras /> : null}
+            {numValue === 2 ? <Ventas /> : null}
+            {numValue === 3 ? <Favoritos userObj={userObj} /> : null}
+          </div>
+        </div>
       
-      <h2>{userObj.name}</h2>
-      <img src={userObj.image} alt="imageprofile" style={{ width: 250 }} />
-      <br />
-      <Link to={"/edit-image"}>
-        <button>Editar Imagen</button>
-      </Link>
-      <p>{userObj.email}</p>
-      <h4>{userObj.city}</h4>
-      <div>
-        <button onClick={handlenumValue1}>Compras</button>
-        <button onClick={handlenumValue2}>Ventas</button>
-        <button onClick={handlenumValue3}>Favoritos</button>
-        <Link to={"/edit-profile"}>
-          <button>Editar Perfil</button>
-        </Link>
-      </div>
-      <div>
-        {numValue === 1 ? <Compras /> : null}
-        {numValue === 2 ? <Ventas /> : null}
-        {numValue === 3 ? <Favoritos userObj={userObj} /> : null}
-        
-      </div>
     </div>
   );
 }

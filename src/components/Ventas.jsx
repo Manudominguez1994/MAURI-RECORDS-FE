@@ -3,7 +3,9 @@ import { useNavigate, Link } from "react-router-dom";
 import service from "../services/service.config";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-
+import Card from "react-bootstrap/Card";
+import { Nav } from "react-bootstrap";
+import ListGroup from "react-bootstrap/ListGroup";
 function Ventas() {
   const navigate = useNavigate();
   const [allOperations, setAllOperations] = useState([]);
@@ -40,45 +42,64 @@ function Ventas() {
   };
   return (
     <div>
-      <h3>Ventas</h3>
+      <div className="ventas-container">
+        
+        <Nav>
+          <Nav.Item>
+            <Link onClick={handleOnSaleVinyls} className="enlaces">
+              Ventas en curso
+            </Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Link onClick={getAllOperations} className="enlaces">
+              Ventas realizadas
+            </Link>
+          </Nav.Item>
+        </Nav>
+      </div>
+      <div>
+        {onsaleSale === true ? (
+          <div>
+            <h3>Ventas en curso</h3>
+            {onSaleVinyls.map((eachVinyl) => {
+              return (
+                <Link to={`/vinylDetails/${eachVinyl._id}`} className="enlaces">
+                  <div className="album-card">
+                    <img style={{ width: 200 }} src={eachVinyl.image} alt="" />
+                    <h3>{eachVinyl.title}</h3>
 
-      <Link onClick={handleOnSaleVinyls}>Ventas en curso</Link>
-      <Link onClick={getAllOperations}>Ventas realizadas</Link>
+                    <h3>{eachVinyl.artist}</h3>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        ) : (
+          <div>
+            <h3>Ventas realizadas</h3>
+            {allOperations.map((eachOperation) => {
+              const año = eachOperation.createdAt.slice(0, 4);
+              const mes = eachOperation.createdAt.slice(5, 7);
+              const dia = eachOperation.createdAt.slice(8, 10);
 
-      {onsaleSale === true ? (
-        <div>
-          {onSaleVinyls.map((eachVinyl) => {
-            return (
-              <>
-              <h3><Link to={`/vinylDetails/${eachVinyl._id}`}>{eachVinyl.title}</Link></h3>
-              <h3>{eachVinyl.artist}</h3>
-              <img src={eachVinyl.image} alt="" />
-              </>
-            )
-          })}
-        </div>
-      ) : (
-        <div>
-          {allOperations.map((eachOperation) => {
-            const año = eachOperation.createdAt.slice(0, 4);
-            const mes = eachOperation.createdAt.slice(5, 7);
-            const dia = eachOperation.createdAt.slice(8, 10);
-
-            return (
-              <>
+              return (
                 <div>
                   {activeUserId === eachOperation.sellerUser._id ? (
-                    <div>
-                      <h3>Album: {eachOperation.product.title}</h3>
-                      <h3>Banda: {eachOperation.product.artist}</h3>
+                    <div className="album-card">
                       <img
                         style={{ width: 200 }}
                         src={eachOperation.product.image}
                         alt=""
                       />
+                      <h3> {eachOperation.product.title}</h3>
+                      <h3> {eachOperation.product.artist}</h3>
+
                       <p>Usuario comprador: {eachOperation.buyerUser.name}</p>
+
                       <p>Usuario vendedor: {eachOperation.sellerUser.name}</p>
-                      <p>Precio: {eachOperation.totalPrice}</p>
+
+                      <p>{eachOperation.totalPrice}€</p>
+
                       <p>
                         Fecha de operación:{" "}
                         {`Has vendido tu vinilo el ${dia} del ${mes} del ${año}`}
@@ -86,11 +107,11 @@ function Ventas() {
                     </div>
                   ) : null}
                 </div>
-              </>
-            );
-          })}
-        </div>
-      )}
+              );
+            })}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

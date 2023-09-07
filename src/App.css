@@ -1,21 +1,219 @@
 #root {
   text-align: center;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
-
+/* body {
+  
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vh;
+  margin: 0;
+} */
 a {
   margin: 10px;
   color: white;
 }
 /* NavBar */
+.navbarLinks{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
 
 .navbar{
   color: rgb(17, 16, 16);
-  margin: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #fff;
+  display: flex;
+  justify-content:space-around !important;
+  align-items: center;
+
 }
 .LinkNavbar{
   text-decoration: none;
   color: rgb(47, 46, 46);
+}
+/* Sign Up */
+.divSignUp{
+  width: 600px;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.divFatherSignUp{
+  padding-bottom: 120px;
+  background-color: rgb(36, 36, 36);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.divFatherLongin{
+  padding-bottom: 320px;
+  background-color: rgb(36, 36, 36);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+/* MyProfile */
+.divProfileFather{
+  background-color: rgb(36, 36, 36);
+  display: flex;
+  position: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+}
+.divProfileData{
+  padding-bottom: 50px;
+  display: flex;
+  position: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #5b5a5a;
+  border: 1px;
+  border-radius: 10px;
+  color: white;
+  margin-bottom: 10px;
+}
+.divPestañasYData{
+  display: flex;
+  position: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  
+}
+.divProfilePestañas{
+  display: flex;
+  position: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(248, 188, 58);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  width: 700px;
+}
+.divProfilePestañasContent{
+  background-color: #5b5a5a;
+  color: white;
+  display: flex;
+  position: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  width: 700px;
+  
+}
+.divProfilePestañasContent h3{
+ padding-top: 10px;
+ padding-bottom: 10px;
+}
+
+/* Compras */
+
+.compras-container{
+  background-color: #4c4b4b;
+  color: white;
+ display: flex;
+  position: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px;
+  border-radius: 10px;
+  width: 700px;
+  text-decoration: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.comprasCard{
+  background-color:white;
+  color: black;
+  display: flex;
+  position: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 700px;
+  border-radius: 10px;
+}
+
+/* Ventas */
+.ventas-container{
+  background-color:  #5b5a5a;
+  color: white;
+ display: flex;
+  position: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px;
+  border-radius: 10px;
+  width: 700px;
+  text-decoration: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
 
 }
 
+
+/* Enlaces */
+
+.enlaces {
+  color:rgb(255, 212, 69);
+}
+
+/* FormEditImg */
+
+.formeditImg{
+  background-color:  rgb(36, 36, 36);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  position: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+.formImg{
+  background-color: white;
+}
+
+/* Creacion de vinilo */
+
+.viniloCreateContainer{
+  background-color:  rgb(36, 36, 36);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  position: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  color: white;
+}
+/* .vinilocreateImagen{
+  display: flex;
+  position: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+
+.album-card {
+  width: 500px;
+  background-color: rgb(36, 36, 36);
+  color: whitesmoke;
+  border-radius: 16px;
+  margin: 0 auto 28px;
+  padding: 24px;
+  background-color: rgb(173, 173, 173);
+}
