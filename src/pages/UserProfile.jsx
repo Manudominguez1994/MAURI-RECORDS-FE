@@ -15,6 +15,7 @@ function UserProfile() {
   
 
   useEffect(() => {
+    
       getUserObj();
   }, []);
 

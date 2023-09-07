@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import service from "../../services/service.config";
 
+import Spinner from 'react-bootstrap/Spinner'
+
 function OperationConfirm() {
   const [operationConfirm, setOperationConfirm] = useState("");
   const [buttonValue, setButtonValue] = useState(true);
@@ -13,12 +15,9 @@ function OperationConfirm() {
   console.log("id dinamnica de operation", params);
 
   useEffect(() => {
-    setTimeout(() => {
-      
-      getOperationConfirm();
-      // handleOnsale();
-      setButtonValue(true);
-    }, 2000);
+    getOperationConfirm();
+    // handleOnsale();
+    setButtonValue(true);
   }, []);
 
   const getOperationConfirm = async () => {
@@ -55,7 +54,11 @@ function OperationConfirm() {
   };
 
   if (operationConfirm === "") {
-    return <Spinner animation="grow" variant="primary"/>
+    return (
+     <div className='spinners'>
+       <Spinner animation="grow" variant="primary" />
+     </div> 
+    )
   }
 
 
