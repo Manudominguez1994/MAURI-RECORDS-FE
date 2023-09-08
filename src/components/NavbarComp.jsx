@@ -52,12 +52,12 @@ function NavbarComp() {
               <>
                 <Nav.Link>
                   <Link className="LinkNavbar" to="/signup">
-                    SignUp
+                    Registrarte
                   </Link>
                 </Nav.Link>
                 <Nav.Link>
                   <Link className="LinkNavbar" to="/login">
-                    Login
+                    Iniciar sesion
                   </Link>
                 </Nav.Link>
               </>
