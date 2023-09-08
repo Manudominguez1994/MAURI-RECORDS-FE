@@ -4,10 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { uploadImageService } from "../../services/cloud.services";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Spinner from 'react-bootstrap/Spinner';
-
-
-
+import Spinner from "react-bootstrap/Spinner";
 
 function CreateVinyl() {
   const navigate = useNavigate();
@@ -108,10 +105,8 @@ function CreateVinyl() {
 
   return (
     <div className="viniloCreateContainer">
-     
-    
-      <div>SUBE TU VINILO</div>
-      
+      <div>
+        <h2>SUBE TU VINILO</h2>
 
       {errorMessage ? <p>{errorMessage}</p> : null}
       <Form onSubmit={handleSubmit}>
@@ -124,21 +119,25 @@ function CreateVinyl() {
             disabled={isUploading}
           />
         </div>
-        {isUploading ?  
-        <div className='spinners'>
-          <Spinner animation="grow" variant="primary" />
-        </div> 
-        : null}
+        {isUploading ? (
+          <div className="spinners">
+            <Spinner animation="grow" variant="primary" />
+          </div>
+        ) : null}
         {imageUrl ? (
           <div>
             <img src={imageUrl} alt="img" width={200} />
           </div>
         ) : null}
-        
-        <Form.Label htmlFor="title">Título</Form.Label>
-        <Form.Control type="text" name="title" onChange={handleTitle} value={title} placeholder="Titulo"/>
 
-        
+        <Form.Label htmlFor="title">Título</Form.Label>
+        <Form.Control
+          type="text"
+          name="title"
+          onChange={handleTitle}
+          value={title}
+          placeholder="Titulo"
+        />
 
         <Form.Label htmlFor="artist">Banda</Form.Label>
         <Form.Control
@@ -149,8 +148,6 @@ function CreateVinyl() {
           placeholder="Artista o Banda"
         />
 
-        
-
         <Form.Label htmlFor="description">Descripción</Form.Label>
         <Form.Control
           type="text"
@@ -159,8 +156,6 @@ function CreateVinyl() {
           value={description}
           placeholder="Descripción"
         />
-
-        
 
         <Form.Label htmlFor="price">Precio</Form.Label>
         <Form.Control
@@ -173,7 +168,9 @@ function CreateVinyl() {
 
         <br />
 
-        <Form.Label htmlFor="stateConservation">Estado de conservación</Form.Label>
+        <Form.Label htmlFor="stateConservation">
+          Estado de conservación
+        </Form.Label>
         <Form.Select onChange={handleStateConservation}>
           <option value="">Seleccionar</option>
           {AllState.map((eachState) => {
@@ -185,10 +182,8 @@ function CreateVinyl() {
           })}
         </Form.Select>
 
-      
         <Form.Label htmlFor="genre">Género</Form.Label>
-        
-      
+
         <Form.Select onChange={handleGenre}>
           <option value="">Seleccionar</option>
           {AllGenre.map((eachGenre) => {
@@ -200,13 +195,16 @@ function CreateVinyl() {
           })}
         </Form.Select>
 
-       <br />
+        <br />
 
-        <Button variant="outline-warning" type="submit">Subir vinilo</Button>
+        <Button variant="outline-warning" type="submit">
+          Subir vinilo
+        </Button>
         <Link to="/">
           <Button variant="outline-warning">Cancelar</Button>
         </Link>
       </Form>
+      </div>
     </div>
   );
 }

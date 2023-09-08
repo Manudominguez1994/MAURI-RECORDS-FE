@@ -24,7 +24,7 @@ function Ventas() {
       const response = await service.get("/vinyl/allVinyls/on-sale");
       setOnSaleVinyls(response.data);
       setSaleOnSaleButton(true);
-      console.log("aaaaaaa", response);
+      // console.log("aaaaaaa", response);
     } catch (error) {
       navigate("/error");
     }
@@ -33,7 +33,7 @@ function Ventas() {
   const getAllOperations = async () => {
     try {
       const response = await service.get("/operation/allOperations/all");
-      console.log(response.data);
+      // console.log(response.data);
       setAllOperations(response.data);
       setSaleOnSaleButton(false);
     } catch (error) {
@@ -43,7 +43,6 @@ function Ventas() {
   return (
     <div>
       <div className="ventas-container">
-        
         <Nav>
           <Nav.Item>
             <Link onClick={handleOnSaleVinyls} className="enlaces">

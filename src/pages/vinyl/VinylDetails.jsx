@@ -5,8 +5,8 @@ import service from "../../services/service.config";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 
-import Spinner from 'react-bootstrap/Spinner'
-import Button from 'react-bootstrap/Button';
+import Spinner from "react-bootstrap/Spinner";
+import Button from "react-bootstrap/Button";
 
 function VinylDetails() {
   const navigate = useNavigate();
@@ -62,11 +62,10 @@ function VinylDetails() {
 
   if (eachVinyl === null) {
     return (
-    <div className='spinners'>
-     <Spinner animation="grow" variant="primary" />
-    </div>
-      
-    )
+      <div className="spinners">
+        <Spinner animation="grow" variant="primary" />
+      </div>
+    );
   }
 
   return (
@@ -74,7 +73,11 @@ function VinylDetails() {
       {errorMessage ? <p>{errorMessage}</p> : null}
       <div className="album-image-container">
         <div>
-          <img className='album-details-image' src={eachVinyl.image} alt="imagen cloudinary no funciona" />
+          <img
+            className="album-details-image"
+            src={eachVinyl.image}
+            alt="imagen cloudinary no funciona"
+          />
         </div>
         <div>
           <h2>{eachVinyl.title}</h2>
@@ -95,7 +98,7 @@ function VinylDetails() {
           <p>{eachVinyl.genre}</p>
         </div>
         <div>
-          <p>Vinilo vendido por {eachVinyl.sellerUser.name} </p>
+          <p>Vinilo puesto en venta por {eachVinyl.sellerUser.name} </p>
         </div>
         <div>
           {eachVinyl.sellerUser._id === activeUserId ? (
@@ -104,16 +107,24 @@ function VinylDetails() {
                 <Button variant="warning">Cambiar Imagen</Button>
               </Link>
               <Link to={`/vinylDetails/${eachVinyl._id}/edit`}>
-                <Button variant="warning" >Editar Vinilo</Button>
+                <Button variant="warning">Editar Vinilo</Button>
               </Link>
-              <Button variant="warning" onClick={handleDelete}>Borrar</Button>
-              <Link to="/"><Button variant="warning">Cancelar</Button></Link>
+              <Button variant="warning" onClick={handleDelete}>
+                Borrar
+              </Button>
+              <Link to="/">
+                <Button variant="warning">Cancelar</Button>
+              </Link>
             </div>
           ) : (
             <div>
-              <Button variant="warning" onClick={handleOperationCreate}>Comprar</Button>
-              <Link to="/"><Button variant="warning">Cancelar</Button></Link>
-          </div>
+              <Button variant="warning" onClick={handleOperationCreate}>
+                Comprar
+              </Button>
+              <Link to="/">
+                <Button variant="warning">Cancelar</Button>
+              </Link>
+            </div>
           )}
         </div>
       </div>

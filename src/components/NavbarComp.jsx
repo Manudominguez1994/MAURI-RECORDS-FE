@@ -6,8 +6,6 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
-
-
 function NavbarComp() {
   const navigate = useNavigate();
 
@@ -20,22 +18,21 @@ function NavbarComp() {
 
   return (
     <Navbar className="mb-0" expand="lg" sticky="top">
-      <div >
+      <div>
         <Navbar.Brand className="mr-auto">
           <Link className="LinkNavbar" to="/">
-            Home
+            <img src="https://res.cloudinary.com/dausfjvtt/image/upload/v1694161199/Mauri%20Records/doy7jx1352htswfalheg.png" alt="" style={{width:50}} />          
           </Link>
         </Navbar.Brand>
       </div>
-      <div className="d-flex flex-row" >
-      
+      <div className="d-flex flex-row">
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto d-flex flex-row justify-content-center">
             {isUserActive === true ? (
               <>
                 <Nav.Link>
                   <Link className="LinkNavbar" to="/my-profile">
-                    My profile
+                    Mi perfil
                   </Link>
                 </Nav.Link>
                 <Nav.Link>

@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import service from "../../services/service.config";
 
-import Spinner from 'react-bootstrap/Spinner'
+import Spinner from "react-bootstrap/Spinner";
 
 function OperationConfirm() {
   const [operationConfirm, setOperationConfirm] = useState("");
   const [buttonValue, setButtonValue] = useState(true);
 
-  
   const navigate = useNavigate();
 
   const params = useParams();
-  console.log("id dinamnica de operation", params);
+  // console.log("id dinamnica de operation", params);
 
   useEffect(() => {
     getOperationConfirm();
@@ -24,51 +23,46 @@ function OperationConfirm() {
     try {
       const operation = await service.get(`/operation/${params.operationId}`);
       setOperationConfirm(operation.data);
-      console.log(
-        "aquí recibo el objeto de la operación desde BE",
-        operation.data
-      );  
+      // console.log(
+      //   "aquí recibo el objeto de la operación desde BE",
+      //   operation.data
+      // );
     } catch (error) {
-      console.log("Este error lo odio");
+      // console.log("Este error lo odio");
       navigate("/error");
     }
   };
 
   const handleOperationDelete = async () => {
     try {
-      await service.delete(`/operation/delete/${params.operationId}`)
+      await service.delete(`/operation/delete/${params.operationId}`);
     } catch (error) {
-      navigate(error)
+      navigate(error);
     }
-  }
-
+  };
 
   const handleButtonChange = async (vinylId) => {
     try {
-      await service.post(`/operation/update-on-sale/${vinylId}`)
+      await service.post(`/operation/update-on-sale/${vinylId}`);
       setButtonValue(false);
-      
     } catch (error) {
-      navigate(error)
+      navigate(error);
     }
   };
 
   if (operationConfirm === "") {
     return (
-     <div className='spinners'>
-       <Spinner animation="grow" variant="primary" />
-     </div> 
-    )
+      <div className="spinners">
+        <Spinner animation="grow" variant="primary" />
+      </div>
+    );
   }
 
+  const año = operationConfirm.createdAt.slice(0, 4);
+  const mes = operationConfirm.createdAt.slice(5, 7);
+  const dia = operationConfirm.createdAt.slice(8, 10);
 
-  const año = operationConfirm.createdAt.slice(0, 4)
-  const mes = operationConfirm.createdAt.slice(5, 7)
-  const dia = operationConfirm.createdAt.slice(8, 10)
-  
   return (
-    
-
     <div>
       {buttonValue === true ? (
         <div>
@@ -82,10 +76,19 @@ function OperationConfirm() {
           <p>Usuario comprador: {operationConfirm.buyerUser.name}</p>
           <p>Usuario vendedor: {operationConfirm.sellerUser.name}</p>
           <p>Precio: {operationConfirm.totalPrice}</p>
-          <p>Fecha de operación: {`La operación se ha realizado el ${dia} del ${mes} del ${año}`} </p>
+          <p>
+            Fecha de operación:{" "}
+            {`La operación se ha realizado el ${dia} del ${mes} del ${año}`}{" "}
+          </p>
 
-          <button onClick={() => handleButtonChange(operationConfirm.product._id)}>Confirmar compra</button>
-          <Link to='/'><button onClick={handleOperationDelete}>Cancelar</button></Link>
+          <button
+            onClick={() => handleButtonChange(operationConfirm.product._id)}
+          >
+            Confirmar compra
+          </button>
+          <Link to="/">
+            <button onClick={handleOperationDelete}>Cancelar</button>
+          </Link>
         </div>
       ) : (
         <div>

@@ -48,7 +48,7 @@ function Login() {
   return (
     <div className="divFatherLongin">
       <div className="divSignUp">
-        <h3>Inicia sesion</h3>
+        <h3>Inicia sesión</h3>
 
         <Form onSubmit={handleLogin}>
           <Form.Group className="mb-3" controlId="formBasicEmail">

@@ -2,7 +2,7 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import { Link } from "react-router-dom";
 function favoritos(props) {
-  console.log(props, "imrpime props");
+  // console.log(props, "imrpime props");
   return (
     <div>
       <h3>Favoritos</h3>

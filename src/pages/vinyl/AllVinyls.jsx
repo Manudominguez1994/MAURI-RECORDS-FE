@@ -86,7 +86,7 @@ function AllVinyls() {
   const handleAddFavorite = async (vinylId) => {
     try {
       await service.put(`/user/${vinylId}/fav`);
-      console.log("añadido a fav");
+      // console.log("añadido a fav");
     } catch (error) {
       navigate("/error");
     }
@@ -294,57 +294,55 @@ function AllVinyls() {
       <div className="allVinyls-container">
         {allVinylsClone.map((eachVinyl) => {
           return (
-            
-              <div className="allVinyls-container-flex">
-                <div className="album-card" key={eachVinyl._id}>
-                  <div className="album-image-container">
-                    <img
-                      className="album-image"
-                      src={eachVinyl.image}
-                      alt="image"
-                    />
-                  </div>
+            <div className="allVinyls-container-flex">
+              <div className="album-card" key={eachVinyl._id}>
+                <div className="album-image-container">
+                  <img
+                    className="album-image"
+                    src={eachVinyl.image}
+                    alt="image"
+                  />
+                </div>
 
-                  <div className="album-props">
-                    <h2>{eachVinyl.title}</h2>
-                  </div>
-                  <div className="album-props">
-                    <h3>{eachVinyl.artist}</h3>
-                  </div>
-                  <div className="album-props">
-                    <h5>{eachVinyl.price}€</h5>
-                  </div>
-                  <div className="album-props">
-                    <h5>{eachVinyl.genre}</h5>
-                  </div>
-                  <div className="vinyl-card-btn">
-                    <Link to={`/vinylDetails/${eachVinyl._id}`}>
-                      <Button variant="warning">Detalles</Button>
-                    </Link>
-                    {eachVinyl.sellerUser !== activeUserId ? (
-                      <>
-                        <Link>
-                          <Button
-                            variant="warning"
-                            onClick={() => handleOperationCreate(eachVinyl._id)}
-                          >
-                            Comprar
-                          </Button>
-                        </Link>
-                        <Link>
-                          <Button
-                            variant="warning"
-                            onClick={() => handleAddFavorite(eachVinyl._id)}
-                          >
-                            Favoritos
-                          </Button>
-                        </Link>
-                      </>
-                    ) : null}
-                  </div>
+                <div className="album-props">
+                  <h2>{eachVinyl.title}</h2>
+                </div>
+                <div className="album-props">
+                  <h3>{eachVinyl.artist}</h3>
+                </div>
+                <div className="album-props">
+                  <h5>{eachVinyl.price}€</h5>
+                </div>
+                <div className="album-props">
+                  <h5>{eachVinyl.genre}</h5>
+                </div>
+                <div className="vinyl-card-btn">
+                  <Link to={`/vinylDetails/${eachVinyl._id}`}>
+                    <Button variant="warning">Detalles</Button>
+                  </Link>
+                  {eachVinyl.sellerUser !== activeUserId ? (
+                    <>
+                      <Link>
+                        <Button
+                          variant="warning"
+                          onClick={() => handleOperationCreate(eachVinyl._id)}
+                        >
+                          Comprar
+                        </Button>
+                      </Link>
+                      <Link>
+                        <Button
+                          variant="warning"
+                          onClick={() => handleAddFavorite(eachVinyl._id)}
+                        >
+                          Favoritos
+                        </Button>
+                      </Link>
+                    </>
+                  ) : null}
                 </div>
               </div>
-           
+            </div>
           );
         })}
       </div>

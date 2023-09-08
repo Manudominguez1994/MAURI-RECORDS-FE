@@ -79,7 +79,7 @@ function Signup() {
             name="city"
             value={city}
             onChange={handleCityChange}
-            placeholder="Enter email"
+            placeholder="Introduce tu ciudad"
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -103,7 +103,7 @@ function Signup() {
 
        
 
-        <Button variant="outline-secondary" type="submit">Registrate</Button>
+        <Button variant="outline-secondary" type="submit">Regístrate</Button>
       </Form>
     </div>
     </div>

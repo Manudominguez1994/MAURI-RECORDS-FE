@@ -16,7 +16,7 @@ function Compras() {
   const getAllOperations = async () => {
     try {
       const response = await service.get("/operation/allOperations/all");
-      console.log('aaaaaaaaaa', response.data);
+      // console.log("aaaaaaaaaa", response.data);
       setAllOperations(response.data);
     } catch (error) {
       navigate("/error");
@@ -24,14 +24,13 @@ function Compras() {
   };
 
   return (
-    <div >
+    <div>
       <h3>Compras</h3>
 
       {allOperations.map((eachOperation) => {
-
-        const año = eachOperation.createdAt.slice(0, 4)
-        const mes = eachOperation.createdAt.slice(5, 7)
-        const dia = eachOperation.createdAt.slice(8, 10)
+        const año = eachOperation.createdAt.slice(0, 4);
+        const mes = eachOperation.createdAt.slice(5, 7);
+        const dia = eachOperation.createdAt.slice(8, 10);
 
         return (
           <div>
@@ -47,8 +46,11 @@ function Compras() {
                 <p>Usuario comprador: {eachOperation.buyerUser.name}</p>
                 <p>Usuario vendedor: {eachOperation.sellerUser.name}</p>
                 <p>Precio: {eachOperation.totalPrice}</p>
-                
-                <p>Fecha de operación: {`Has comprado tu vinilo el ${dia} del ${mes} del ${año}`} </p>
+
+                <p>
+                  Fecha de operación:{" "}
+                  {`Has comprado tu vinilo el ${dia} del ${mes} del ${año}`}{" "}
+                </p>
                 {/* <p>Fecha de operación: {Date.parse(eachOperation.createdAt)}</p> */}
               </div>
             ) : null}
