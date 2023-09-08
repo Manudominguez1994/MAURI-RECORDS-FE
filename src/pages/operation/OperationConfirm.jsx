@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import service from "../../services/service.config";
-
+import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 
 function OperationConfirm() {
@@ -63,7 +63,7 @@ function OperationConfirm() {
   const dia = operationConfirm.createdAt.slice(8, 10);
 
   return (
-    <div>
+    <div className="details-father" style={{paddingTop: 50}}>
       {buttonValue === true ? (
         <div>
           <h3>Album: {operationConfirm.product.title}</h3>
@@ -81,13 +81,13 @@ function OperationConfirm() {
             {`La operación se ha realizado el ${dia} del ${mes} del ${año}`}{" "}
           </p>
 
-          <button
+          <Button variant="warning"
             onClick={() => handleButtonChange(operationConfirm.product._id)}
           >
             Confirmar compra
-          </button>
+          </Button>
           <Link to="/">
-            <button onClick={handleOperationDelete}>Cancelar</button>
+            <Button variant="warning" onClick={handleOperationDelete}>Cancelar</Button>
           </Link>
         </div>
       ) : (
